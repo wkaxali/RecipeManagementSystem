@@ -46,6 +46,7 @@ class getProductToRawAssociationController extends Controller
 
     public function golakabab($data){
 
+        print "Whatgit";
         return $data;
 
     }
