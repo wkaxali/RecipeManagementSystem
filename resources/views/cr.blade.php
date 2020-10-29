@@ -443,14 +443,14 @@ background-color: red;
                 </div>
                 <div class="col-md-4">
                     <label for="Estimate">Estimate Cost</label>
-                    <input type="text" class="form-control" name="Estimate" id="Estimate">
+                    <input type="text" class="form-control" name="Estimate" id="Estimate" value="89">
                     <label for="Sale">Sale Price</label>
                     <input type="text" class="form-control" name="sale" id="sale">
                     <br>
                     <div class="sale-buttons">
                         <button class="btn btn-info">Edit</button>
                         <button class="btn btn-danger">Delete</button>
-                        <button class="btn btn-success" onclick="getRecipes()">Save</button>
+                        <button class="btn btn-success" onclick="calc()">Save</button>
                     </div>
                 </div>
             </div>
@@ -478,13 +478,32 @@ background-color: red;
     
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js?v=7.0.4"></script>
-    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
-    <script src="assets/js/scripts.bundle.js?v=7.0.4"></script>
+    
+    <script src="assets/js/scripts.bundle.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--end::Global Theme Bundle-->
     <script>
- 
+ /////////////////////////
+
+ function calc() {
+
+var table = document.getElementById('dataTable');
+var rows = table.rows;
+var total = 0;
+var cell;
+
+// Assume first row is headers, adjust as required
+// Assume last row is footer, addjust as required
+for (var i=0, iLen=rows.length ; i<iLen; i++) {
+    cell = rows[i].cells[4];
+    total += Number(cell.textContent || cell.innerText);
+}
+document.getElementById('Estimate').value = total.toFixed(2);
+$( "#Estimate" ).val().hide().fadeIn(1000);
+}
+
+
+ ////////////////////////
  function getRecipes() {
     
     var xhttp = new XMLHttpRequest();
@@ -493,6 +512,7 @@ background-color: red;
         document.getElementById("dataTable").innerHTML =
       this.responseText;
       $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      calc();
     }
   };
   var selectedValue=$('#SelectMenu').find(":selected").val();
@@ -502,11 +522,19 @@ background-color: red;
  
  }
 
-// function getRecipes() {
-   
-//     var conceptName = $('#SelectMenu :selected').val();
-//     alert(conceptName);
-// }
+function tok($data) {
+    var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("Menus").innerHTML =
+      this.responseText;
+    }
+  };
+  
+  xhttp.open("GET", "./golakabab/"+$data, true);
+  xhttp.send();
+    
+};
 
  
 
@@ -522,7 +550,7 @@ background-color: red;
   
   xhttp.open("GET", "./getAllMenuItems", true);
   xhttp.send();
- }
+ };
 
  
 
@@ -556,12 +584,18 @@ $("#searchTable").on('click','.btnSelect',function(){
      var data=col1+"\n"+col2+"\n"+col3;
      
      alert(data);
+     tok(data);
+     
+
+
 });
 });
 
+
+
+ </script>
 
  
- </script>
 </body>
 
 

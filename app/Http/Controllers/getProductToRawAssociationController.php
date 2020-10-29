@@ -43,6 +43,13 @@ class getProductToRawAssociationController extends Controller
 
     }
 
+
+    public function golakabab($data){
+
+        return $data;
+
+    }
+
     public function getAllMenuProductsTable()
     {
         $results=DB::select('select PID,ProductName,SalePrice from tblmenuproducts');

@@ -46,6 +46,7 @@ Route::get('/getAllRecipes/{PID}',[getProductToRawAssociationController::class, 
 Route::get('/getAllMenuItems',[getProductToRawAssociationController::class, 'getAllMenuProducts'] );
 Route::get('/getAllMenuItemsTable',[getProductToRawAssociationController::class, 'getAllMenuProductsTable'] );
 Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getIdealStock'] );
+Route::get('/golakabab/{data}',[getProductToRawAssociationController::class, 'golakabab'] );
 
 
 
