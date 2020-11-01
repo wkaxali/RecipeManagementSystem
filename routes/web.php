@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\getProductToRawAssociationController;
-
+use App\Http\Controllers\tblRawMaterialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +51,7 @@ Route::get('/getAllMenuItemsTable',[getProductToRawAssociationController::class,
 Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getIdealStock'] );
 Route::get('/golakabab/{data}',[getProductToRawAssociationController::class, 'golakabab'] );
 
+Route::get('/zuha',[tblRawMaterialController::class, 'updateintblmenuproducts'] );
 
 
 
