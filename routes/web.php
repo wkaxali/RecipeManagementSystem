@@ -36,9 +36,12 @@ Route::get('/es', function () {
 //https://www.w3schools.com/js/js_ajax_database.asp
 Route::get('/dbcheck',function(){
 
-$results=DB::select('select * from vw_producttorecipeview');
+// $results=DB::select('select * from vw_producttorecipeview');
 
-return $results[0]->RMID;
+// return $results[0]->RMID;
+
+$id= DB::insert('insert into tblrawm (MatirialName) values ( ?)', [ 'Dayle']);
+return $id;
 });
 
 
@@ -46,7 +49,7 @@ Route::get('/getAllRecipes/{PID}',[getProductToRawAssociationController::class, 
 Route::get('/getAllMenuItems',[getProductToRawAssociationController::class, 'getAllMenuProducts'] );
 Route::get('/getAllMenuItemsTable',[getProductToRawAssociationController::class, 'getAllMenuProductsTable'] );
 Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getIdealStock'] );
-Route::get('/golakabab/{data}',[getProductToRawAssociationController::class, 'golakabab'] );
+Route::get('/golakabab/{data}',[getProductToRawAssociationControll er::class, 'golakabab'] );
 
 
 

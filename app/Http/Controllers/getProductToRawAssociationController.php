@@ -14,7 +14,8 @@ class getProductToRawAssociationController extends Controller
 
      public function index()
     {
-        return "hfyu";
+       
+      
     }
     public function getRecipes($PID)
     {
@@ -46,8 +47,6 @@ class getProductToRawAssociationController extends Controller
 
     public function golakabab($data){
 
-        print "Whatgit";
-        return $data;
 
     }
 
