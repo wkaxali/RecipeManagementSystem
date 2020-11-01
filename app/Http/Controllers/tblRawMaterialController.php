@@ -338,7 +338,7 @@ print("Number of Rows Affacted".$affected);
 
 public function updateintblmenuproducts(){
 
-    $MProductName="dirnk3";
+    $MProductName="dirnnnnk3";
     $MDiscrption="kama3l";
     $MSalePrice="22";
     $MRecipeCost="232";
