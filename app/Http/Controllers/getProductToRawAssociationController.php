@@ -15,7 +15,7 @@ class getProductToRawAssociationController extends Controller
      public function index()
     {
        
-      
+      print("skhcih");
     }
     public function getRecipes($PID)
     {
@@ -26,11 +26,13 @@ class getProductToRawAssociationController extends Controller
 
 
            $tableOfHtml=$tableOfHtml." <tr>
+                                   
                                     <td>". $ro->RMID . "</td>
                                     <td>".$ro->MatirialName."</td>
-                                    <td>".$ro->Quantity."</td>
+                                    <td contenteditable=\"true\">".$ro->Quantity."</td>
                                     <td>".$ro->Unit."</td>
-                                    <td contenteditable=\"true\">".$ro->ECost."</td>
+                                    <td >".$ro->ECost."</td>
+                                    <td style=\"display:none;\">". $ro->PerUnitPurchasePrice . "</td>
 
 
                                 </tr>";

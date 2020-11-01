@@ -578,14 +578,25 @@ $("#searchTable").on('click','.btnSelect',function(){
      // get the current row
      var currentRow=$(this).closest("tr"); 
      
-     var col1=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
-     var col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
-     var col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-     var data=col1+"\n"+col2+"\n"+col3;
-     
-     alert(data);
-     tok(data);
-     
+     var MID=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+     var Mname=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+     var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+     var unit=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+     var pppu=currentRow.find("td:eq(4)").text(); // get current row 3rd TD
+   alert(qty);
+     var table = document.getElementById("dataTable");
+  var row = table.insertRow(-1);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);    
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+  cell1.innerHTML = MID;
+  cell2.innerHTML = Mname; 
+  cell3.innerHTML= qty;
+  cell4.innerHTML=unit;
+
+  //calculation than enter price
+
 
 
 });
