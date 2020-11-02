@@ -339,7 +339,7 @@ print("Number of Rows Affacted".$affected);
 
 public function updateintblmenuproducts(){
 
-    $MProductName="dirnnnnk3";
+    $MProductName="dirnnnkfnk3";
     $MDiscrption="kama3l";
     $MSalePrice="22";
     $MRecipeCost="232";
@@ -354,4 +354,247 @@ print("Number of Rows Affacted".$affected);
 
 } 
 
+
+
+
+public function updateintblrawm(){
+    $RMatirialName="sushi";
+    $RUnit="mm";
+    $RRemarks="yummy";
+    $RCategoryID="7";
+    $RRMID="7";
+
+    $qr="UPDATE   tblrawm SET   MatirialName='".$RMatirialName."', Unit ='".$RUnit."', ";
+    $qr=$qr."Remarks ='".$RRemarks."',CategoryID='".$RCategoryID."' WHERE  RMID =".$RRMID;
+    $affected = DB::update($qr);
+print("Number of Rows Affactedddddddddddd".$affected);
+
+
+}
+
+    public function updateintblrawtocategory(){
+        $RCCatID="2";
+        $RCRawID="3";
+        $RCid="1";
+        $RCRemarks="kamal hai";
+
+    $qr="UPDATE   tblrawtocategory SET   RawID='".$RCRawID."', Remarks ='".$RCRemarks."', ";
+    $qr=$qr."id ='".$RCid."',CatID='".$RCCatID."' WHERE  CatID =".$RCCatID;
+    $affected = DB::update($qr);
+print("Number of Rows Affactdddd".$affected);
+
+
+
+
+
+
+
+
+
+
+}
+
+public function updateintblrecipetoraw(){
+    $RERRID="2";
+    $REPID="5";
+    $RERAWID="78999";
+    $REUnit="mm";
+    $REQuantity="0.09";
+    $RERemarks="wowww";
+    $REECost="999.9";   
+
+  
+
+    $qr="UPDATE   tblrecipetoraw SET   PID='".$REPID."', RAWID ='".$RERAWID."', ";
+    $qr=$qr."Unit ='".$REUnit."', Quantity='".$REQuantity."',  Remarks='". $RERemarks."',Ecost='".$REECost."' WHERE   RRID =". $RERRID;
+    $affected = DB::update($qr);
+print("Number of Rows Affacted".$affected);
+}
+
+public function updateintblsales(){
+    
+    
+    $SSalesID="2";
+    $SMenuProductID="6";
+    $SQuantity="6";
+    $STotalSale="6";
+    $SRecipeCost="6";
+    $STotalRecipeCost="6";
+   
+  
+
+    $qr="UPDATE   tblsales SET   MenuProductID='".  $SMenuProductID."', TotalSale ='".$STotalSale."', ";
+    $qr=$qr."RecipeCost ='". $SRecipeCost."', Quantity='".$SQuantity."',  TotalRecipeCost='".$STotalRecipeCost."' WHERE   SalesID =". $SSalesID;
+    $affected = DB::update($qr);
+    print("Number of Rows Affactttted".$affected);
+}
+public function updateintblsoldrawmatirial(){
+    
+    $SoldID="1";
+    $SoldPID="2";
+    $SoldRMID="2";
+    $SoldSoldQty="2";
+    $SoldRawMatirialUsed="2";
+    $SoldStockBefore="2";
+    $SoldSAfter="2";
+   
+   
+  
+
+    $qr="UPDATE   tblsoldrawmatirial SET   PID='".   $SoldPID."', RMID ='".  $SoldRMID."', StockAfter='".$SoldSAfter. "',";
+    $qr=$qr."SoldQty ='".$SoldSoldQty."',  RawMatirialUsed='". $SoldRawMatirialUsed."', StockBefore='".$SoldStockBefore."' WHERE   ID =". $SoldID;
+    $affected = DB::update($qr);
+    print("Number of Rows Affactttted".$affected);
+}
+
+
+public function updateintblstocksaletrack(){
+    $SalesID="9";
+    $StockSalesID="2";
+    $StockRMID="2";
+    $SStockSold="2";
+    // $StockDateStamp = date('09/24/1984 04:56:34 p', time());
+    
+//    $date=date_create("2013-03-15");
+//    echo date_format($StockDateStamp,"d/m/Y");
+
+
+$qr="UPDATE   tblstocksaletrack SET   RMID ='".$StockRMID."', ";
+$qr=$qr."StockSold ='". $SStockSold."' WHERE   SalesID =".$SalesID;
+$affected = DB::update($qr);
+print("Number of Rows Affacccccctdddd".$affected);
+
+
+
+
+
+
+}
+public function updateintbluserinfo(){
+
+    $UID="2";
+    $UserNameinfo="std";
+    $UPassword="333";
+    $UDesignation="fg";
+    $UEnable="no";
+    $ULastLogin="555";  
+
+
+    $qr="UPDATE   userinfo SET    UserName='". $UserNameinfo."', Password ='".$UPassword."', ";
+    $qr=$qr." Designation ='".$UDesignation."',Enable='".$UEnable."',  LastLogin ='". $ULastLogin."' WHERE  UserID =". $UID;
+    $affected = DB::update($qr);
+print("Number of Rows Affacted".$affected);
+
+} 
+
+
+
+public function deleteintbluserinfo(){
+
+    
+    
+    $Deleted = DB:: delete("delete from userinfo where UserID=3"); 
+     
+     print($Deleted);
+     
+     
+ 
+ }
+ 
+
+ public function deleteintblstocksaletrack(){
+
+    
+    
+    $Deleted = DB:: delete("delete from tblstocksaletrack where StockDeductionID=2"); 
+     
+     print($Deleted);
+
+
+
+ 
+ 
+    }
+
+    public function deleteintblsales(){
+
+    
+    
+        $Deleted = DB:: delete("delete from tblsales where SalesID=1"); 
+         
+         print($Deleted);
+    
+    
+    
+     }
+
+
+
+     public function deleteintblrecipetoraw(){
+
+    
+    
+        $Deleted = DB:: delete("delete from tblrecipetoraw where RRID=1"); 
+         
+         print($Deleted);
+    
+    
+    
+     }
+
+     public function deleteintblrawtocategory(){
+
+    
+    
+        $Deleted = DB:: delete("delete from tblrawtocategory where id=1"); 
+         
+         print($Deleted);
+    
+    
+    
+     }
+
+     public function deleteintblrawm(){
+
+    
+    
+        $Deleted = DB:: delete("delete from tblrawm where RMID=1"); 
+         
+         print($Deleted);
+    
+    
+    
+     }
+     public function deleteintblmenuproducts(){
+
+    
+    
+        $Deleted = DB:: delete("delete from tblmenuproducts where PID=1"); 
+         
+         print($Deleted);
+    
+    
+    
+     }
+    
+    public function deleteintblcategory(){
+
+   
+   
+       $Deleted = DB:: delete("delete from tblcategory where CatID=1"); 
+        
+        print($Deleted);
+   
+   
+   
+    }
+    public function deleteintblinstock(){
+
+   
+   
+        $Deleted = DB:: delete("delete from instock where StockID=1"); 
+         
+         print($Deleted);
+    
+}
 }

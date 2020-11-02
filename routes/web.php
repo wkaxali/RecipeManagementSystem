@@ -51,7 +51,7 @@ Route::get('/getAllMenuItemsTable',[getProductToRawAssociationController::class,
 Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getIdealStock'] );
 Route::get('/golakabab/{data}',[getProductToRawAssociationController::class, 'golakabab'] );
 
-Route::get('/zuha',[tblRawMaterialController::class, 'updateintblmenuproducts'] );
+Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
 
 
 
