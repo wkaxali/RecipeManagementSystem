@@ -547,21 +547,54 @@ $("#searchTable").on('click','.btnSelect',function(){
   cell1.innerHTML = MID;
   cell2.innerHTML = Mname; 
   cell3.innerHTML= '1';
-  cell4.innerHTML=unit;
-  cell6.innerHTML=pppu;
+  
   
   //$("#searchModal").modal('hide');
   //calculation than enter price
   alert("Item added");
 
+  if(unit=="KG"){
 
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty()\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
+    //alert("whatssss");
+  }
+  else if (unit=="Litter" || unit=="litter"){
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty()\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
+
+  }
+  else{
+
+    cell4.innerHTML=unit;
+
+  }
+
+  cell6.innerHTML=pppu;
+  
 
 });
 });
+
+
+
+
+
 
 $(document).ready( function () {
     $('#searchTable').DataTable();
 } );
+
+
+
+
+
+function calculationForUnitAndQty() {
+    var cell = $('#unitCellInDataTable').find(":selected").val();
+   
+    alert(cell);
+    
+};
+
+
 
 
  </script>
