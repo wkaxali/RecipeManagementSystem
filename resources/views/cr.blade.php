@@ -486,7 +486,7 @@ function searchRawMatirial() {
     
 };
 
- 
+
 
  function getAllMenuItems() {
    
@@ -527,6 +527,10 @@ $(document).ready(function(){
 // code to read selected table row cell data (values).
 $("#searchTable").on('click','.btnSelect',function(){
      // get the current row
+
+
+
+
      var currentRow=$(this).closest("tr"); 
      
      var MID=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
@@ -534,6 +538,7 @@ $("#searchTable").on('click','.btnSelect',function(){
      //var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
      var unit=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
      var pppu=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+if(IsItemExistInDataTable(MI)){
    
      var table = document.getElementById("dataTable");
   var row = table.insertRow(-1);
@@ -570,7 +575,7 @@ $("#searchTable").on('click','.btnSelect',function(){
 
   cell6.innerHTML=pppu;
   cell6.style.display = "none";
-
+}
 });
 });
 
@@ -595,6 +600,20 @@ function calculationForUnitAndQty(x) {
     var PerUnitPurPrice=theRow.cells[5].innerHTML;
    
    alert(x.value);
+   theUnitSelected=x.value;
+    
+   if(theUnitSelected=="MiliGrams"){
+
+   alert( PerUnitPurPrice/1000000);
+
+   }
+   else if(theUnitSelected=="Grams"){
+
+
+    alert( PerUnitPurPrice/1000);
+   }
+
+   
 
 
    // value of per unit price is got in 
@@ -602,7 +621,28 @@ function calculationForUnitAndQty(x) {
 };
 
 
+function IsItemExistInDataTable(item){
 
+
+
+var table = document.getElementById("dataTable");
+for (var i = 0, row; row = table.rows[i]; i++) {
+//iterate through rows
+//rows would be accessed using the "row" variable assigned in the for loop
+//    for (var j = 0, col; col = row.cells[j]; j++) {
+ 
+//    } 
+
+   alert(row.cells[0].innerHTML);
+   if(item==row.cells[0].innerHTML){
+
+
+    alert("This item is already Exist in Recipe");
+    return false;
+   }
+
+}
+};
 
  </script>
 
