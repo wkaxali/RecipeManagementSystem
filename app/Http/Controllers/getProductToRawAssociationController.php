@@ -32,7 +32,7 @@ class getProductToRawAssociationController extends Controller
                                     <td contenteditable=\"true\">".$ro->Quantity."</td>
                                     <td>".$ro->Unit."</td>
                                     <td >".$ro->ECost."</td>
-                                    <td style=\"display:none;\">". $ro->PerUnitPurchasePrice . "</td>
+                                    <td >". $ro->PerUnitPurchasePrice . "</td>
 
 
                                 </tr>";
@@ -47,8 +47,28 @@ class getProductToRawAssociationController extends Controller
     }
 
 
-    public function golakabab($data){
-
+    public function getRawMatirialForSearch(){
+        $results=DB::select('select * from vw_stockview ');
+        $tableOfHtml="";
+            foreach ($results as $ro){
+    
+    
+               $tableOfHtml=$tableOfHtml." <tr class='btnSelect'>
+                                       
+                                        <td >". $ro->RawMatirialID . "</td>
+                                        <td>".$ro->MatirialName."</td>
+                                       
+                                        <td>".$ro->Unit."</td>
+                                        
+                                        <td >". $ro->PerUnitPurchasePrice . "</td>
+    
+    
+                                    </tr>";
+    
+    
+    
+            }
+        return $tableOfHtml;
 
     }
 

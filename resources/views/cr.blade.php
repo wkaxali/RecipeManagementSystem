@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('css/datatables.css') }}" />
+    <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
 
@@ -288,7 +291,7 @@ background-color: red;
                     <button type="button" class="btn btn-info btn-cp" data-toggle="modal"
                         data-target=".bd-example-modal-xl"></button>
                     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
-                        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="searchModal">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <h2 class="text-center mt-5 mb-5">Search</h2>
@@ -311,72 +314,17 @@ background-color: red;
                                                         <th>Material Id</th>
                                                         <th>Item Name</th>
 
-                                                        <th>Current Stock</th>
+                                                       
                                                         <th>Unit</th>
                                                         <th>Unit Sale Price</th>
+                                                        
 
 
                                                     </tr>
                                                 </thead>
-                                                <tbody >
+                                                <tbody id="searchData" >
 
-                                                    <tr  class="btnSelect" >
-                                                        <td class="btnSelect-1">fyf</td>
-                                                        <td  id="pd-price"> kwhoiu</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td>224</td>
-
-
-
-
-                                                    </tr>
-                                                    <tr  class="btnSelect">
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td contenteditable="true">224</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td contenteditable="true">224</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td contenteditable="true">224</td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td>224</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td>224</td>
-
-
-                                                    </tr>
+                                                    <!-- <-Data will be comming from database-->
                                                 </tbody>
                                             </table>
                                         </div>
@@ -425,6 +373,7 @@ background-color: red;
                                     <th>Quantity</th>
                                     <th>Unit</th>
                                     <th>Cost</th>
+                                    <th>Purchase Price</th>
 
 
 
@@ -512,6 +461,7 @@ $( "#Estimate" ).val().hide().fadeIn(1000);
         document.getElementById("dataTable").innerHTML =
       this.responseText;
       $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      
       calc();
     }
   };
@@ -522,16 +472,16 @@ $( "#Estimate" ).val().hide().fadeIn(1000);
  
  }
 
-function tok($data) {
+function searchRawMatirial() {
     var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("Menus").innerHTML =
+        document.getElementById("searchData").innerHTML =
       this.responseText;
     }
   };
   
-  xhttp.open("GET", "./golakabab/"+$data, true);
+  xhttp.open("GET", "./getRawMatirial/", true);
   xhttp.send();
     
 };
@@ -545,6 +495,7 @@ function tok($data) {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("Menus").innerHTML =
       this.responseText;
+      searchRawMatirial();
     }
   };
   
@@ -580,28 +531,37 @@ $("#searchTable").on('click','.btnSelect',function(){
      
      var MID=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
      var Mname=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
-     var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-     var unit=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
-     var pppu=currentRow.find("td:eq(4)").text(); // get current row 3rd TD
-   alert(qty);
+     //var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+     var unit=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+     var pppu=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+   
      var table = document.getElementById("dataTable");
   var row = table.insertRow(-1);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);    
   var cell3 = row.insertCell(2);
   var cell4 = row.insertCell(3);
+  var cell5 = row.insertCell(4);
+  var cell6 = row.insertCell(5);
+
   cell1.innerHTML = MID;
   cell2.innerHTML = Mname; 
-  cell3.innerHTML= qty;
+  cell3.innerHTML= '1';
   cell4.innerHTML=unit;
-
+  cell6.innerHTML=pppu;
+  
+  //$("#searchModal").modal('hide');
   //calculation than enter price
+  alert("Item added");
 
 
 
 });
 });
 
+$(document).ready( function () {
+    $('#searchTable').DataTable();
+} );
 
 
  </script>
