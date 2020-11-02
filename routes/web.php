@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\getProductToRawAssociationController;
 use App\Http\Controllers\tblRawMaterialController;
-use DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -538,7 +538,7 @@ $("#searchTable").on('click','.btnSelect',function(){
      //var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
      var unit=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
      var pppu=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
-if(IsItemExistInDataTable(MI)){
+if(IsItemExistInDataTable(MID)){
    
      var table = document.getElementById("dataTable");
   var row = table.insertRow(-1);
@@ -551,8 +551,9 @@ if(IsItemExistInDataTable(MI)){
 
   cell1.innerHTML = MID;
   cell2.innerHTML = Mname; 
-  cell3.innerHTML= '1';
+  cell3.innerHTML= '<input type="text" onchange="calculationTrigerOnQtyValueChange(this)" value=1>';
   
+ 
   
   //$("#searchModal").modal('hide');
   //calculation than enter price
@@ -560,11 +561,11 @@ if(IsItemExistInDataTable(MI)){
 
   if(unit=="KG"){
 
-    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty(this)\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
     //alert("whatssss");
   }
   else if (unit=="Litter" || unit=="litter"){
-    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty(this)\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
 
   }
   else{
@@ -588,30 +589,62 @@ $(document).ready( function () {
     $('#searchTable').DataTable();
 } );
 
+function calculationTrigerOnQtyValueChange(x){
+    
+    var currentRow=x.parentElement.parentElement;
+    //alert(currentRow);
+   //alert(currentRow.cells[3].children[0]);
+   var j=currentRow.cells[3].children[0];
+   calculationForUnitAndQtyIfUnitChanges(j)
+   
+    ///////working here
+};
 
 
 
-
-function calculationForUnitAndQty(x) {
+function calculationForUnitAndQtyIfUnitChanges(x) {
     var theRow=x.parentElement.parentElement;
   var rx=x.parentElement.parentElement.rowIndex;
 
     var cx= x.parentElement.cellIndex;
-    var PerUnitPurPrice=theRow.cells[5].innerHTML;
+   var  PerUnitPurPrice=theRow.cells[5].innerText;
+    var qty=theRow.cells[2].children[0].value;
    
-   alert(x.value);
+ //  alert(qty);
    theUnitSelected=x.value;
     
    if(theUnitSelected=="MiliGrams"){
-
-   alert( PerUnitPurPrice/1000000);
-
+     valu=(PerUnitPurPrice*qty)/1000000;
+   
    }
    else if(theUnitSelected=="Grams"){
 
 
-    alert( PerUnitPurPrice/1000);
+    valu=(PerUnitPurPrice*qty)/1000;
+   
    }
+   else  if(theUnitSelected=="MiliLitter"){
+     valu=(PerUnitPurPrice*qty)/1000;
+  
+   }
+   else if(theUnitSelected=="KG"){
+    valu=(PerUnitPurPrice*qty);
+   
+
+   }
+   else if(theUnitSelected=="Litter"){
+
+    valu=(PerUnitPurPrice*qty);
+   
+    }
+    else if(theUnitSelected=="Pc"){
+
+        valu=(PerUnitPurPrice*qty);
+
+}
+
+  theRow.cells[4].innerText=valu;
+  calc();
 
    
 
@@ -634,6 +667,7 @@ for (var i = 0, row; row = table.rows[i]; i++) {
 //    } 
 
    alert(row.cells[0].innerHTML);
+   alert(item);
    if(item==row.cells[0].innerHTML){
 
 
@@ -642,6 +676,8 @@ for (var i = 0, row; row = table.rows[i]; i++) {
    }
 
 }
+
+return true;
 };
 
  </script>
