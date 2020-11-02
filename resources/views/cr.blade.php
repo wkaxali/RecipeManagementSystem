@@ -373,7 +373,7 @@ background-color: red;
                                     <th>Quantity</th>
                                     <th>Unit</th>
                                     <th>Cost</th>
-                                    <th>Purchase Price</th>
+                                    
 
 
 
@@ -555,11 +555,11 @@ $("#searchTable").on('click','.btnSelect',function(){
 
   if(unit=="KG"){
 
-    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty()\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty(this)\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
     //alert("whatssss");
   }
   else if (unit=="Litter" || unit=="litter"){
-    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty()\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQty(this)\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
 
   }
   else{
@@ -569,7 +569,7 @@ $("#searchTable").on('click','.btnSelect',function(){
   }
 
   cell6.innerHTML=pppu;
-  
+  cell6.style.display = "none";
 
 });
 });
@@ -587,11 +587,18 @@ $(document).ready( function () {
 
 
 
-function calculationForUnitAndQty() {
-    var cell = $('#unitCellInDataTable').find(":selected").val();
+function calculationForUnitAndQty(x) {
+    var theRow=x.parentElement.parentElement;
+  var rx=x.parentElement.parentElement.rowIndex;
+
+    var cx= x.parentElement.cellIndex;
+    var PerUnitPurPrice=theRow.cells[5].innerHTML;
    
-    alert(cell);
-    
+   alert(x.value);
+
+
+   // value of per unit price is got in 
+
 };
 
 

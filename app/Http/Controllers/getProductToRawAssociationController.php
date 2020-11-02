@@ -25,14 +25,14 @@ class getProductToRawAssociationController extends Controller
         foreach ($results as $ro){
 
 
-           $tableOfHtml=$tableOfHtml." <tr>
+           $tableOfHtml=$tableOfHtml." <tr id='dataTableRow'>
                                    
                                     <td>". $ro->RMID . "</td>
-                                    <td>".$ro->MatirialName."</td>
+                                    <td id='DTMID'>".$ro->MatirialName."</td>
                                     <td contenteditable=\"true\">".$ro->Quantity."</td>
                                     <td>".$ro->Unit."</td>
                                     <td >".$ro->ECost."</td>
-                                    <td >". $ro->PerUnitPurchasePrice . "</td>
+                                    <td style=\"display: none;\" id='perUnitPurchasePriceInDataTable'>". $ro->PerUnitPurchasePrice . "</td>
 
 
                                 </tr>";
