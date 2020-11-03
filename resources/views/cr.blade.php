@@ -402,11 +402,13 @@ background-color: red;
                         <button class="btn btn-info">Edit</button>
                         <button class="btn btn-danger" onclick='check()'>Delete</button>
                         <button class="btn btn-success" onclick="saveData()">Save</button>
-                        <input type="submit" name="" value="Submit" class="btn btn-success>
+                        <input type="submit" name="" value="Submit" class="btn btn-success">
                     </div>
                 </div>
             </div>
             </form>
+            <button class="btn btn-info" onclick="saveData2()">Edit</button>
+        
         </div>
         
     </section>
@@ -689,46 +691,66 @@ return true;
 };
 
 
+function saveData2(){
+
+    var mycar = { make: "Honda", model: "Accord", year: 1998 };
+
+//obj = JSON.parse(mycar);
+var a=JSON.stringify(mycar)
 
 
 
-
-// function saveData(){
-
-//     var recipeDataTable = new Array();
-//     a=1;
-//     $('#dataTable tr').each(function(row, tr){
-
-//         recipeDataTable[row]={
-//             "RMID":$(tr).find('td:eq(0)').text()
-//             ,"RMName":$(tr).find('td:eq(1)').text()
-//             ,"RMqty" :$(tr).find('td:eq(2)').text()
-//             ,"RMUNIT":$(tr).find('td:eq(3)').text()
-//             ,"RMEC" :$(tr).find('td:eq(4)').text()
-//             ,"RMPPU":$(tr).find('td:eq(5)').text()
-//         }
-
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
         
-
-        
-//     });
-    
-//     alert(recipeDataTable[2].RMPPU);
-  
-//     var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-        
-//       alert(this.responseText);
+      alert(this.responseText);
       
-//     }
-//   };
+    }
+  };
   
-//   xhttp.open("GET", "./UpdateRecipeToMenu/"+recipeDataTable, true);
-//   xhttp.send();
+  xhttp.open("GET", "./testdata/"+a, true);
+  xhttp.send();
+}
 
 
-// };
+
+function saveData(){
+
+    var recipeDataTable = new Array();
+    a=1;
+    $('#dataTable tr').each(function(row, tr){
+
+        recipeDataTable[row]={
+            "RMID":$(tr).find('td:eq(0)').text()
+            ,"RMName":$(tr).find('td:eq(1)').text()
+            ,"RMqty" :$(tr).find('td:eq(2)').text()
+            ,"RMUNIT":$(tr).find('td:eq(3)').text()
+            ,"RMEC" :$(tr).find('td:eq(4)').text()
+            ,"RMPPU":$(tr).find('td:eq(5)').text()
+        }
+
+        
+
+        
+    });
+    
+    alert(recipeDataTable[2].RMPPU);
+  
+    var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        
+      alert(this.responseText);
+      
+    }
+  };
+  
+  xhttp.open("GET", "./testdata/"+recipeDataTable, true);
+  xhttp.send();
+
+
+};
 
  </script>
 

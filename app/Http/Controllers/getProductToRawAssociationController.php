@@ -35,7 +35,7 @@ class getProductToRawAssociationController extends Controller
         // session([ 'value' => $request->value]);
         print($req->qty[0]);
          return count($req->qty);
-        
+         
         
          
      }

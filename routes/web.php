@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\getProductToRawAssociationController;
 use App\Http\Controllers\tblRawMaterialController;
+use App\Http\Controllers\testForJson;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,11 @@ Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getR
 Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
 Route::post('/test',[getProductToRawAssociationController::class, 'test'] );
 Route::get('/test2/{data}',[getProductToRawAssociationController::class, 'test2'] );
+
+
+
+
+Route::get('/testdata/{data}',[testForJson::class, 'store'] );
 
 
 
