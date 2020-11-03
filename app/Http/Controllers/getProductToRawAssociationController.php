@@ -4,19 +4,46 @@ namespace App\Http\Controllers;
 use DB;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+
+
+
+
 
 class getProductToRawAssociationController extends Controller
 {
     //
 
 
-
+    
      public function index()
     {
        
       print("skhcih");
     }
+
+    
+    function UpdateRecipeToMenu(Request $req){
+       // session([ 'value' => $request->value]);
+        // $data=$req->all();
+        // $w=($data)->RMID;
+        // print($w);
+       
+        
+    }
+
+    function test(Request $req){
+        // session([ 'value' => $request->value]);
+        print($req->qty[0]);
+         return count($req->qty);
+        
+        
+         
+     }
+     function test2(){
+       
+        alert($data);
+         
+     }
     public function getRecipes($PID)
     {
         
@@ -27,10 +54,10 @@ class getProductToRawAssociationController extends Controller
 
            $tableOfHtml=$tableOfHtml." <tr id='dataTableRow'>
                                    
-                                    <td>". $ro->RMID . "</td>
+                                    <td 'name=RMID'>". $ro->RMID . "</td>
                                     <td id='DTMID'>".$ro->MatirialName."</td>
                                  
-                                    <td> <input type=\"text\" onchange=\"calculationTrigerOnQtyValueChange(this)\" value=".$ro->Quantity."></td>
+                                    <td> <input type=\"text\" onchange=\"calculationTrigerOnQtyValueChange(this)\" value=".$ro->Quantity." name='qty[]'></td>
                                     <td>   <select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'> 
 
                                     <option value=".$ro->Unit.">".$ro->Unit."</option> 

@@ -53,6 +53,8 @@ Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getId
 Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getRawMatirialForSearch'] );
 
 Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
+Route::post('/test',[getProductToRawAssociationController::class, 'test'] );
+Route::get('/test2/{data}',[getProductToRawAssociationController::class, 'test2'] );
 
 
 
@@ -64,6 +66,12 @@ Route::get('/vrs', function () {
 });
 Route::get('/sis', function () {
     return view('setIdealStock');
+});
+
+
+
+Route::get('/testH', function () {
+    
 });
 Route::get('/arm',function(){
 

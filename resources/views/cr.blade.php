@@ -360,6 +360,8 @@ background-color: red;
     <section class="mt-5">
 
         <div class="container">
+        <form action="/test" method="post">
+        {{csrf_field()}}
             <div class="row">
                 <div class="col-md-8 ">
                     <div class="recepi-table" style="overflow-y: auto;">
@@ -382,7 +384,7 @@ background-color: red;
                             </thead>
                             <tbody id="dataTable">
 
-
+                                     <!-- this is the Recipe Matirial is displaying from database -->
                                 
 
 
@@ -398,11 +400,13 @@ background-color: red;
                     <br>
                     <div class="sale-buttons">
                         <button class="btn btn-info">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                        <button class="btn btn-success" onclick="calc()">Save</button>
+                        <button class="btn btn-danger" onclick='check()'>Delete</button>
+                        <button class="btn btn-success" onclick="saveData()">Save</button>
+                        <input type="submit" name="" value="Submit" class="btn btn-success>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
         
     </section>
@@ -420,9 +424,7 @@ background-color: red;
 
 
     <!--end::Demo Panel-->
-    <script>
-        var HOST_URL = "https://keenthemes.com/metronic/tools/preview";
-    </script>
+  
     <!--begin::Global Config(global config for global JS scripts)-->
     
     <!--end::Global Config-->
@@ -433,7 +435,12 @@ background-color: red;
     <!--end::Global Theme Bundle-->
     <script>
  /////////////////////////
+function check(){
 
+
+    var data=table.$('input, select').serialize();
+    alert(data);
+}
  function calc() {
 
 var table = document.getElementById('dataTable');
@@ -645,8 +652,7 @@ function calculationForUnitAndQtyIfUnitChanges(x) {
 
   theRow.cells[4].innerText=valu;
   calc();
-
-   
+  
 
 
    // value of per unit price is got in 
@@ -672,6 +678,8 @@ for (var i = 0, row; row = table.rows[i]; i++) {
 
 
     alert("This item is already Exist in Recipe");
+    
+
     return false;
    }
 
@@ -679,6 +687,48 @@ for (var i = 0, row; row = table.rows[i]; i++) {
 
 return true;
 };
+
+
+
+
+
+
+// function saveData(){
+
+//     var recipeDataTable = new Array();
+//     a=1;
+//     $('#dataTable tr').each(function(row, tr){
+
+//         recipeDataTable[row]={
+//             "RMID":$(tr).find('td:eq(0)').text()
+//             ,"RMName":$(tr).find('td:eq(1)').text()
+//             ,"RMqty" :$(tr).find('td:eq(2)').text()
+//             ,"RMUNIT":$(tr).find('td:eq(3)').text()
+//             ,"RMEC" :$(tr).find('td:eq(4)').text()
+//             ,"RMPPU":$(tr).find('td:eq(5)').text()
+//         }
+
+        
+
+        
+//     });
+    
+//     alert(recipeDataTable[2].RMPPU);
+  
+//     var xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+        
+//       alert(this.responseText);
+      
+//     }
+//   };
+  
+//   xhttp.open("GET", "./UpdateRecipeToMenu/"+recipeDataTable, true);
+//   xhttp.send();
+
+
+// };
 
  </script>
 

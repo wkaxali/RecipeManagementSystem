@@ -144,7 +144,7 @@
               <br>
                 <div class="salePr-buttons">
                    
-                    <button class="btn btn-success">Update</button>
+                    <button class="btn btn-success" onclick="sendData()">Update</button>
                 </div>
               </div>
                
@@ -174,8 +174,15 @@
     <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
     <script src="assets/js/scripts.bundle.js?v=7.0.4"></script>
     <script src="assets/js/pages/crud/forms/widgets/bootstrap-datetimepicker.js?v=7.0.4"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!--end::Global Theme Bundle-->
+    <script type="text/javascript">
+                        function sendData() {
+                           
+                        }
+</script>
 </body>
 
 </html>
