@@ -360,8 +360,8 @@ background-color: red;
     <section class="mt-5">
 
         <div class="container">
-        <form action="/test" method="post">
-        {{csrf_field()}}
+        
+        
             <div class="row">
                 <div class="col-md-8 ">
                     <div class="recepi-table" style="overflow-y: auto;">
@@ -401,13 +401,12 @@ background-color: red;
                     <div class="sale-buttons">
                         <button class="btn btn-info">Edit</button>
                         <button class="btn btn-danger" onclick='check()'>Delete</button>
-                        <button class="btn btn-success" onclick="saveData()">Save</button>
-                        <input type="submit" name="" value="Submit" class="btn btn-success">
+                        <button class="btn btn-success" onclick="insertRecipeDataToDatabase()">Save</button>
+                        
                     </div>
                 </div>
             </div>
-            </form>
-            <button class="btn btn-info" onclick="saveData2()">Edit</button>
+           
         
         </div>
         
@@ -691,12 +690,36 @@ return true;
 };
 
 
-function saveData2(){
+function insertRecipeDataToDatabase(){
 
-    var mycar = { make: "Honda", model: "Accord", year: 1998 };
+    var myTrows=[];
+    var table = document.getElementById("dataTable");
+    $('#dataTable tr').each(function(row, tr){
+
+    myTrows[row]=[
+        
+        $(tr).find('td:eq(0)').text(),
+        $(tr).find('td:eq(1)').text(),
+        $(tr).find('td:eq(2) input[type="text"]').val(),
+        $(tr).find('td:eq(3)').find(":selected").val(),
+        $(tr).find('td:eq(4)').text(),
+        $(tr).find('td:eq(5)').text()
+    
+    ];
+    
+
+});
+   
+   alert(myTrows[0]);
+   
+//     var items = [ This might be important 
+//   [myTrows, 2],
+//   [3, 4],
+//   [5, 6]
+// ];
 
 //obj = JSON.parse(mycar);
-var a=JSON.stringify(mycar)
+var a=JSON.stringify(myTrows)
 
 
 
@@ -704,14 +727,14 @@ var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         
-      alert(this.responseText);
+      alert("This is comming from Controller" +this.responseText);
       
     }
   };
   
   xhttp.open("GET", "./testdata/"+a, true);
   xhttp.send();
-}
+};
 
 
 
@@ -722,20 +745,22 @@ function saveData(){
     $('#dataTable tr').each(function(row, tr){
 
         recipeDataTable[row]={
-            "RMID":$(tr).find('td:eq(0)').text()
-            ,"RMName":$(tr).find('td:eq(1)').text()
-            ,"RMqty" :$(tr).find('td:eq(2)').text()
-            ,"RMUNIT":$(tr).find('td:eq(3)').text()
-            ,"RMEC" :$(tr).find('td:eq(4)').text()
-            ,"RMPPU":$(tr).find('td:eq(5)').text()
+            RMID: $(tr).find('td:eq(0)').text()
+            ,RMName :$(tr).find('td:eq(1)').text()
+            ,RMqty :$(tr).find('td:eq(2)').text()
+            ,RMUNIT :$(tr).find('td:eq(3)').text()
+            ,RMEC :$(tr).find('td:eq(4)').text()
+            ,RMPPU :$(tr).find('td:eq(5)').text()
         }
+        
 
         
 
         
     });
     
-    alert(recipeDataTable[2].RMPPU);
+    
+    var b=JSON.stringify(recipeDataTable);
   
     var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -746,7 +771,7 @@ function saveData(){
     }
   };
   
-  xhttp.open("GET", "./testdata/"+recipeDataTable, true);
+  xhttp.open("GET", "./testdata/"+b, true);
   xhttp.send();
 
 

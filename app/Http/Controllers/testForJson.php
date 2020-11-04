@@ -12,8 +12,9 @@ class testForJson extends Controller
     //    var_dump(json_decode($data));
 
 
-       $obj = json_decode($data);
-    return $obj->{'make'};
+    $obj = json_decode($data);
+    return $obj[1][0];
+    
       
     }
       
