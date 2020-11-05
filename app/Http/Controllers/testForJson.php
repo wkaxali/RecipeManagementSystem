@@ -14,7 +14,7 @@ class testForJson extends Controller
 
     $obj = json_decode($data);
     return $obj[1][0];
-    
+
       
     }
       

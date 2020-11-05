@@ -17,7 +17,7 @@ class tblRawMaterialController extends Controller
     {
         //
     }
-   public function insetNewRawMaterial(){
+   public function insertNewRawMaterial(){
 
         $MName="Mutton";
         $unit="KG";

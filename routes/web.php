@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\getProductToRawAssociationController;
 use App\Http\Controllers\tblRawMaterialController;
 use App\Http\Controllers\testForJson;
+use App\Http\Controllers\CUDtlbRawtoMenu;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +57,8 @@ Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getR
 
 Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
 Route::post('/test',[getProductToRawAssociationController::class, 'test'] );
-Route::get('/test2/{data}',[getProductToRawAssociationController::class, 'test2'] );
+Route::get('/UpdateRecipe/{data}/{MenuID}/{TEC}/{TSP}',[CUDtlbRawtoMenu::class, 'UpdateRecipe'] );
+Route::get('/getSalePurchasePrice/{PID}',[CUDtlbRawtoMenu::class, 'getSalePurchasePrice'] );
 
 
 

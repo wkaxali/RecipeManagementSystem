@@ -249,7 +249,7 @@ background-color: red;
 
 </head>
 
-<body>
+<body onload="createTable()">
     <header class="mt-5 mb-5">
         <div class="container">
             <div class="row">
@@ -259,16 +259,23 @@ background-color: red;
             </div>
         </div>
     </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 offset-md-9">
+<button class="btn btn-info" onclick="addRow()">Add Row</button>
+            </div>
+        </div>
+    </div>
     <section class="my-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="raw-table">
-                        <table class="table  table-bordered" id="Kt_table">
+                    <div class="raw-table" style="overflow:auto">
+                        <table class="table  table-bordered" id="empTable">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Product Id</th>
+                                    <th>Rm</th>
+                                    <th style="Display: none">Product Id</th>
                                     <th style="width: 150px;">Product Name</th>
                                     <th>Category</th>
                                     <th style="width: 150px;">Enter Stock</th>
@@ -278,34 +285,7 @@ background-color: red;
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td> <select style="height: 25px !important; width: 158px !important;"
-                                            class="selectpicker" data-live-search="true" tabindex="null">
-                                            <option></option>
-                                            <option>25484</option>
-                                            <option>212121</option>
-                                            <option>020121</option>
-                                            <option>875454</option>
-                                            <option>Rayan</option>
-                                            <option>Naeem</option>
-                                        </select></td>
-                                    <td>0</td>
-                                    <td> <select style="height: 25px !important; width: 158px !important;"
-                                            class="selectpicker" data-live-search="true" tabindex="null">
-                                            <option>KG</option>
-                                            <option>25484</option>
-                                            <option>212121</option>
-                                            <option>020121</option>
-                                            <option>875454</option>
-                                            <option>Rayan</option>
-                                            <option>Naeem</option>
-                                        </select></td>
-                                    <td>0</td>
-
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -314,7 +294,7 @@ background-color: red;
           <br>
             <div class="row">
                 <div class="col-md-2 offset-md-10 text-right">
-                    <button class="btn btn-success">Update</button>
+                    <button  class="btn btn-success">Update</button>
                 </div>
             </div>
         </div>
@@ -322,6 +302,132 @@ background-color: red;
     </section>
 
 
+
+
+
+
+<script>
+    var arrHead = new Array();	// array for header.
+    arrHead = ['', 'Employee Name', 'Designation', 'Age', '', ''];
+
+    // first create TABLE structure with the headers. 
+    function createTable() {
+        var empTable = document.createElement('table');
+        empTable.setAttribute('id', 'empTable'); // table id.
+
+        var tr = empTable.insertRow(-1);
+        for (var h = 0; h < arrHead.length; h++) {
+            var th = document.createElement('th'); // create table headers
+            th.innerHTML = arrHead[h];
+            tr.appendChild(th);
+        }
+
+        var div = document.getElementById('cont');
+        div.appendChild(empTable);  // add the TABLE to the container.
+    }
+
+    // now, add a new to the TABLE.
+    function addRow() {
+        var empTab = document.getElementById('empTable');
+
+        var rowCnt = empTab.rows.length;   // table row count.
+        var tr = empTab.insertRow(rowCnt); // the table row.
+        tr = empTab.insertRow(rowCnt);
+
+        for (var c = 0; c < arrHead.length; c++) {
+            var td = document.createElement('td'); // table definition.
+            td = tr.insertCell(c);
+
+            if (c == 0) {      // the first column.
+                // add a button in every new row in the first column.
+                var button = document.createElement('input');
+
+                // set input attributes.
+                button.setAttribute('type', 'button');
+                button.setAttribute('value', 'Remove');
+
+                // add button's 'onclick' event.
+                button.setAttribute('onclick', 'removeRow(this)');
+
+                td.appendChild(button);
+            }
+            else if (c==4) {
+                // 2nd, 3rd and 4th column, will have textbox.
+                var ele = document.createElement('select');
+                
+                ele.setAttribute('type', 'select');
+                ele.innerHTML=' <option value="KG" >KG</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="Grams" >Grams</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="Litters" >Litters</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="MiliLitters" >MiliLitters</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="Pc" >Pc</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="Pack" >Pack</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="Box" >Box</option>';
+
+                
+                //ele.setAttribute('value', '');
+                
+
+                td.appendChild(ele);
+            }
+            else if (c==2) {
+                // 2nd, 3rd and 4th column, will have textbox.
+                var ele = document.createElement('select');
+                
+                ele.setAttribute('type', 'select');
+                ele.innerHTML=' <option value="KG" >Soups</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="Grams" >Salads</option>';
+               
+
+                
+                //ele.setAttribute('value', '');
+                
+
+                td.appendChild(ele);
+
+            }
+            else{
+
+                var x = document.createElement('input');
+
+                // set input attributes.
+                x.setAttribute('type', 'text');
+                x.setAttribute('value', ' ');
+
+                // add button's 'onclick' event.
+               
+                td.appendChild(x);
+            }
+        }
+    }
+
+    // delete TABLE row function.
+    function removeRow(oButton) {
+        var empTab = document.getElementById('empTable');
+        empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
+    }
+
+    // function to extract and submit table data.
+    function submit() {
+        var myTab = document.getElementById('empTable');
+        var arrValues = new Array();
+
+        // loop through each row of the table.
+        for (row = 1; row < myTab.rows.length - 1; row++) {
+        	// loop through each cell in a row.
+            for (c = 0; c < myTab.rows[row].cells.length; c++) {  
+                var element = myTab.rows.item(row).cells[c];
+                if (element.childNodes[0].getAttribute('type') == 'text') {
+                    arrValues.push("'" + element.childNodes[0].value + "'");
+                }
+            }
+        }
+        
+        // The final output.
+        document.getElementById('output').innerHTML = arrValues;
+        //console.log (arrValues);   // you can see the array values in your browsers console window. Thanks :-) 
+    }
+</script>
 
 
 
@@ -343,6 +449,19 @@ background-color: red;
     <script src="assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.4"></script>
     <script src="assets/js/scripts.bundle.js?v=7.0.4"></script>
     <!--end::Global Theme Bundle-->
+    
+<script>
+function myFunction() {
+  var table = document.getElementById("myTable");
+  var row = table.insertRow(0);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+  cell1.innerHTML = "<input>";
+  cell2.innerHTML = "";
+  cell3.innerHTML = "<input>";
+}
+</script>
 </body>
 
 </html>
