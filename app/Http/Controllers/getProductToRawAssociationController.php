@@ -49,6 +49,7 @@ class getProductToRawAssociationController extends Controller
         
     $results=DB::select('select * from vw_producttorecipeview where PID='.$PID);
     $tableOfHtml="";
+    
         foreach ($results as $ro){
 
 
@@ -68,9 +69,11 @@ class getProductToRawAssociationController extends Controller
 
                                 </tr>";
 
+          
 
 
         }
+        
     return $tableOfHtml;
       
        

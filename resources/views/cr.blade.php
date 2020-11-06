@@ -394,9 +394,9 @@ background-color: red;
                 </div>
                 <div class="col-md-4">
                     <label for="Estimate">Estimate Cost</label>
-                    <input type="text" class="form-control" name="Estimate" id="Estimate" value="89">
+                    <input type="text" class="form-control" name="TotalEstimatePrice" id="TotalEstimatePrice" value="0.0">
                     <label for="Sale">Sale Price</label>
-                    <input type="text" class="form-control" name="sale" id="sale">
+                    <input type="text" class="form-control" name="TotalsalePrice" id="TotalsalePrice" value="0.0">
                     <br>
                     <div class="sale-buttons">
                         <button class="btn btn-info">Edit</button>
@@ -455,8 +455,8 @@ for (var i=0, iLen=rows.length ; i<iLen; i++) {
     cell = rows[i].cells[4];
     total += Number(cell.textContent || cell.innerText);
 }
-document.getElementById('Estimate').value = total.toFixed(2);
-$( "#Estimate" ).val().hide().fadeIn(1000);
+document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
+
 }
 
 
@@ -468,9 +468,10 @@ $( "#Estimate" ).val().hide().fadeIn(1000);
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("dataTable").innerHTML =
       this.responseText;
-      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
       
-      calc();
+      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      getSaleAndRecipeCost();
+      //calc();
     }
   };
   var selectedValue=$('#SelectMenu').find(":selected").val();
@@ -478,7 +479,39 @@ $( "#Estimate" ).val().hide().fadeIn(1000);
   xhttp.open("GET", "./getAllRecipes/"+selectedValue, true);
   xhttp.send();
  
+ };
+
+
+
+ 
+
+ function getSaleAndRecipeCost(){
+    var PID=$('#SelectMenu').find(":selected").val();
+    var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var mydata = JSON.parse(this.response);
+       // alert( mydata[0]['SalePrice']);
+        document.getElementById("TotalEstimatePrice").value=mydata[0]['RecipeCost'];
+        document.getElementById("TotalsalePrice").value=mydata[0]['SalePrice'];
+        
+      //  alert( mydata[0]['SalePrice']);
+
+      
+     // $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      
+     // calc();
+    }
+  };
+  var selectedValue=$('#SelectMenu').find(":selected").val();
+
+  xhttp.open("GET", "./getSalePurchasePrice/"+PID, true);
+  xhttp.send();
+ 
  }
+
+
+ 
 
 function searchRawMatirial() {
     var xhttp = new XMLHttpRequest();
@@ -576,9 +609,13 @@ if(IsItemExistInDataTable(MID)){
     cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
 
   }
+  else if (unit=="Pc"){
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Pc\">Pc</option>     </select>";;   
+
+  }
   else{
 
-    cell4.innerHTML=unit;
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value="+unit+">"+unit+"</option>     </select>";
 
   }
 
@@ -648,6 +685,7 @@ function calculationForUnitAndQtyIfUnitChanges(x) {
     else if(theUnitSelected=="Pc"){
 
         valu=(PerUnitPurPrice*qty);
+       // alert("JBIUG");
 
 }
 
@@ -694,10 +732,18 @@ function insertRecipeDataToDatabase(){
 
     var myTrows=[];
     var table = document.getElementById("dataTable");
+    
+    var ec=document.getElementById('TotalEstimatePrice').value;
+    var sp=document.getElementById('TotalsalePrice').value;
+    //alert(sp);
     $('#dataTable tr').each(function(row, tr){
 
     myTrows[row]=[
-        
+        // //col1 =RMID
+        // col2 =itemName
+        // col3 =qty
+        // clo4 =unitPrice
+        // col5 = PUPP (this is hidden)
         $(tr).find('td:eq(0)').text(),
         $(tr).find('td:eq(1)').text(),
         $(tr).find('td:eq(2) input[type="text"]').val(),
@@ -712,13 +758,7 @@ function insertRecipeDataToDatabase(){
    
    alert(myTrows[0]);
    
-//     var items = [ This might be important 
-//   [myTrows, 2],
-//   [3, 4],
-//   [5, 6]
-// ];
 
-//obj = JSON.parse(mycar);
 var a=JSON.stringify(myTrows)
 
 
@@ -727,55 +767,18 @@ var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         
-      alert("This is comming from Controller" +this.responseText);
+      alert("This is comming from Controller ==" +this.responseText);
       
     }
   };
-  
-  xhttp.open("GET", "./testdata/"+a, true);
+  var MenuID=$('#SelectMenu').find(":selected").val();
+  xhttp.open("GET", "./UpdateRecipe/"+a+"/"+MenuID+"/"+ec+"/"+sp, true);
   xhttp.send();
 };
 
 
 
-function saveData(){
 
-    var recipeDataTable = new Array();
-    a=1;
-    $('#dataTable tr').each(function(row, tr){
-
-        recipeDataTable[row]={
-            RMID: $(tr).find('td:eq(0)').text()
-            ,RMName :$(tr).find('td:eq(1)').text()
-            ,RMqty :$(tr).find('td:eq(2)').text()
-            ,RMUNIT :$(tr).find('td:eq(3)').text()
-            ,RMEC :$(tr).find('td:eq(4)').text()
-            ,RMPPU :$(tr).find('td:eq(5)').text()
-        }
-        
-
-        
-
-        
-    });
-    
-    
-    var b=JSON.stringify(recipeDataTable);
-  
-    var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        
-      alert(this.responseText);
-      
-    }
-  };
-  
-  xhttp.open("GET", "./testdata/"+b, true);
-  xhttp.send();
-
-
-};
 
  </script>
 
