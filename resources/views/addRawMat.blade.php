@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
    
     <link href="/css/app.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
     <style>
         * {
     margin: 0;
@@ -271,7 +272,7 @@ background-color: red;
             <div class="row">
                 <div class="col-md-12">
                     <div class="raw-table" style="overflow:auto">
-                        <table class="table  table-bordered" id="empTable">
+                        <table class="table  table-bordered" id="dataTable">
                             <thead>
                                 <tr>
                                     <th>Rm</th>
@@ -294,7 +295,7 @@ background-color: red;
           <br>
             <div class="row">
                 <div class="col-md-2 offset-md-10 text-right">
-                    <button  class="btn btn-success">Update</button>
+                    <button  class="btn btn-success" onclick="insertRecipeDataToDatabase()">Update</button>
                 </div>
             </div>
         </div>
@@ -312,23 +313,23 @@ background-color: red;
 
     // first create TABLE structure with the headers. 
     function createTable() {
-        var empTable = document.createElement('table');
-        empTable.setAttribute('id', 'empTable'); // table id.
+        var dataTable = document.createElement('table');
+        dataTable.setAttribute('id', 'dataTable'); // table id.
 
-        var tr = empTable.insertRow(-1);
+        var tr = dataTable.insertRow(-1);
         for (var h = 0; h < arrHead.length; h++) {
             var th = document.createElement('th'); // create table headers
             th.innerHTML = arrHead[h];
             tr.appendChild(th);
         }
 
-        var div = document.getElementById('cont');
-        div.appendChild(empTable);  // add the TABLE to the container.
+        // var dive = document.getElementById('cont');
+        // dive.appendChild(dataTable);  // add the TABLE to the container.
     }
 
     // now, add a new to the TABLE.
     function addRow() {
-        var empTab = document.getElementById('empTable');
+        var empTab = document.getElementById('dataTable');
 
         var rowCnt = empTab.rows.length;   // table row count.
         var tr = empTab.insertRow(rowCnt); // the table row.
@@ -403,13 +404,13 @@ background-color: red;
 
     // delete TABLE row function.
     function removeRow(oButton) {
-        var empTab = document.getElementById('empTable');
+        var empTab = document.getElementById('dataTable');
         empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
     }
 
     // function to extract and submit table data.
     function submit() {
-        var myTab = document.getElementById('empTable');
+        var myTab = document.getElementById('dataTable');
         var arrValues = new Array();
 
         // loop through each row of the table.
@@ -427,6 +428,37 @@ background-color: red;
         document.getElementById('output').innerHTML = arrValues;
         //console.log (arrValues);   // you can see the array values in your browsers console window. Thanks :-) 
     }
+
+
+
+
+
+    function insertRecipeDataToDatabase(){
+
+var myTrows=[];
+var table = document.getElementById("dataTable");
+
+$('#dataTable tr').each(function(row, tr){
+
+myTrows[row]=[
+    
+    $(tr).find('td:eq(1) input[type="text"]').val(),
+    $(tr).find('td:eq(2)').find(":selected").val(),
+    $(tr).find('td:eq(3) input[type="text"]').val(),
+    
+    $(tr).find('td:eq(4)').find(":selected").val(),
+    $(tr).find('td:eq(3) input[type="text"]').val()
+
+];
+
+
+}) ;
+myTrows.shift();
+alert(myTrows[1].lenght);
+
+
+};
+
 </script>
 
 
