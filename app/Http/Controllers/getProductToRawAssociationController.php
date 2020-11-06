@@ -4,18 +4,46 @@ namespace App\Http\Controllers;
 use DB;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+
+
+
+
 
 class getProductToRawAssociationController extends Controller
 {
     //
 
 
-
+    
      public function index()
     {
-        return "hfyu";
+       
+      print("skhcih");
     }
+
+    
+    function UpdateRecipeToMenu(Request $req){
+       // session([ 'value' => $request->value]);
+        // $data=$req->all();
+        // $w=($data)->RMID;
+        // print($w);
+       
+        
+    }
+
+    function test(Request $req){
+        // session([ 'value' => $request->value]);
+        print($req->qty[0]);
+         return count($req->qty);
+         
+        
+         
+     }
+     function test2(){
+       
+        alert($data);
+         
+     }
     public function getRecipes($PID)
     {
         
@@ -24,12 +52,18 @@ class getProductToRawAssociationController extends Controller
         foreach ($results as $ro){
 
 
-           $tableOfHtml=$tableOfHtml." <tr>
-                                    <td>". $ro->RMID . "</td>
-                                    <td>".$ro->MatirialName."</td>
-                                    <td>".$ro->Quantity."</td>
-                                    <td>".$ro->Unit."</td>
-                                    <td contenteditable=\"true\">".$ro->ECost."</td>
+           $tableOfHtml=$tableOfHtml." <tr id='dataTableRow'>
+                                   
+                                    <td 'name=RMID'>". $ro->RMID . "</td>
+                                    <td id='DTMID'>".$ro->MatirialName."</td>
+                                 
+                                    <td> <input type=\"text\" onchange=\"calculationTrigerOnQtyValueChange(this)\" value=".$ro->Quantity." name='qty[]'></td>
+                                    <td>   <select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'> 
+
+                                    <option value=".$ro->Unit.">".$ro->Unit."</option> 
+                                    </select></td>
+                                    <td >".$ro->ECost."</td>
+                                    <td style=\"display: none;\" id='perUnitPurchasePriceInDataTable'>". $ro->PerUnitPurchasePrice . "</td>
 
 
                                 </tr>";
@@ -44,10 +78,28 @@ class getProductToRawAssociationController extends Controller
     }
 
 
-    public function golakabab($data){
-
-        print "Whatgit";
-        return $data;
+    public function getRawMatirialForSearch(){
+        $results=DB::select('select * from vw_stockview ');
+        $tableOfHtml="";
+            foreach ($results as $ro){
+    
+    
+               $tableOfHtml=$tableOfHtml." <tr class='btnSelect'>
+                                       
+                                        <td >". $ro->RawMatirialID . "</td>
+                                        <td>".$ro->MatirialName."</td>
+                                       
+                                        <td>".$ro->Unit."</td>
+                                        
+                                        <td >". $ro->PerUnitPurchasePrice . "</td>
+    
+    
+                                    </tr>";
+    
+    
+    
+            }
+        return $tableOfHtml;
 
     }
 

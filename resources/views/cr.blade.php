@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('css/datatables.css') }}" />
+    <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
 
@@ -288,7 +291,7 @@ background-color: red;
                     <button type="button" class="btn btn-info btn-cp" data-toggle="modal"
                         data-target=".bd-example-modal-xl"></button>
                     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
-                        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="searchModal">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <h2 class="text-center mt-5 mb-5">Search</h2>
@@ -311,72 +314,17 @@ background-color: red;
                                                         <th>Material Id</th>
                                                         <th>Item Name</th>
 
-                                                        <th>Current Stock</th>
+                                                       
                                                         <th>Unit</th>
                                                         <th>Unit Sale Price</th>
+                                                        
 
 
                                                     </tr>
                                                 </thead>
-                                                <tbody >
+                                                <tbody id="searchData" >
 
-                                                    <tr  class="btnSelect" >
-                                                        <td class="btnSelect-1">fyf</td>
-                                                        <td  id="pd-price"> kwhoiu</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td>224</td>
-
-
-
-
-                                                    </tr>
-                                                    <tr  class="btnSelect">
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td contenteditable="true">224</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td contenteditable="true">224</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td contenteditable="true">224</td>
-
-
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td>224</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10/10/2020</td>
-                                                        <td>#232</td>
-                                                        <td>Coffee</td>
-                                                        <td>100</td>
-                                                        <td>224</td>
-
-
-                                                    </tr>
+                                                    <!-- <-Data will be comming from database-->
                                                 </tbody>
                                             </table>
                                         </div>
@@ -412,6 +360,8 @@ background-color: red;
     <section class="mt-5">
 
         <div class="container">
+        
+        
             <div class="row">
                 <div class="col-md-8 ">
                     <div class="recepi-table" style="overflow-y: auto;">
@@ -425,6 +375,7 @@ background-color: red;
                                     <th>Quantity</th>
                                     <th>Unit</th>
                                     <th>Cost</th>
+                                    
 
 
 
@@ -433,7 +384,7 @@ background-color: red;
                             </thead>
                             <tbody id="dataTable">
 
-
+                                     <!-- this is the Recipe Matirial is displaying from database -->
                                 
 
 
@@ -449,11 +400,14 @@ background-color: red;
                     <br>
                     <div class="sale-buttons">
                         <button class="btn btn-info">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                        <button class="btn btn-success" onclick="calc()">Save</button>
+                        <button class="btn btn-danger" onclick='check()'>Delete</button>
+                        <button class="btn btn-success" onclick="insertRecipeDataToDatabase()">Save</button>
+                        
                     </div>
                 </div>
             </div>
+           
+        
         </div>
         
     </section>
@@ -471,9 +425,7 @@ background-color: red;
 
 
     <!--end::Demo Panel-->
-    <script>
-        var HOST_URL = "https://keenthemes.com/metronic/tools/preview";
-    </script>
+  
     <!--begin::Global Config(global config for global JS scripts)-->
     
     <!--end::Global Config-->
@@ -484,7 +436,12 @@ background-color: red;
     <!--end::Global Theme Bundle-->
     <script>
  /////////////////////////
+function check(){
 
+
+    var data=table.$('input, select').serialize();
+    alert(data);
+}
  function calc() {
 
 var table = document.getElementById('dataTable');
@@ -512,6 +469,7 @@ $( "#Estimate" ).val().hide().fadeIn(1000);
         document.getElementById("dataTable").innerHTML =
       this.responseText;
       $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      
       calc();
     }
   };
@@ -522,21 +480,21 @@ $( "#Estimate" ).val().hide().fadeIn(1000);
  
  }
 
-function tok($data) {
+function searchRawMatirial() {
     var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("Menus").innerHTML =
+        document.getElementById("searchData").innerHTML =
       this.responseText;
     }
   };
   
-  xhttp.open("GET", "./golakabab/"+$data, true);
+  xhttp.open("GET", "./getRawMatirial/", true);
   xhttp.send();
     
 };
 
- 
+
 
  function getAllMenuItems() {
    
@@ -545,6 +503,7 @@ function tok($data) {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("Menus").innerHTML =
       this.responseText;
+      searchRawMatirial();
     }
   };
   
@@ -576,22 +535,247 @@ $(document).ready(function(){
 // code to read selected table row cell data (values).
 $("#searchTable").on('click','.btnSelect',function(){
      // get the current row
+
+
+
+
      var currentRow=$(this).closest("tr"); 
      
-     var col1=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
-     var col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
-     var col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-     var data=col1+"\n"+col2+"\n"+col3;
-     
-     alert(data);
-     tok(data);
-     
+     var MID=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+     var Mname=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+     //var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+     var unit=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+     var pppu=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+if(IsItemExistInDataTable(MID)){
+   
+     var table = document.getElementById("dataTable");
+  var row = table.insertRow(-1);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);    
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+  var cell5 = row.insertCell(4);
+  var cell6 = row.insertCell(5);
 
+  cell1.innerHTML = MID;
+  cell2.innerHTML = Mname; 
+  cell3.innerHTML= '<input type="text" onchange="calculationTrigerOnQtyValueChange(this)" value=1>';
+  
+ 
+  
+  //$("#searchModal").modal('hide');
+  //calculation than enter price
+  alert("Item added");
 
+  if(unit=="KG"){
+
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
+    //alert("whatssss");
+  }
+  else if (unit=="Litter" || unit=="litter"){
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
+
+  }
+  else{
+
+    cell4.innerHTML=unit;
+
+  }
+
+  cell6.innerHTML=pppu;
+  cell6.style.display = "none";
+}
 });
 });
 
 
+
+
+
+
+$(document).ready( function () {
+    $('#searchTable').DataTable();
+} );
+
+function calculationTrigerOnQtyValueChange(x){
+    
+    var currentRow=x.parentElement.parentElement;
+    //alert(currentRow);
+   //alert(currentRow.cells[3].children[0]);
+   var j=currentRow.cells[3].children[0];
+   calculationForUnitAndQtyIfUnitChanges(j)
+   
+    ///////working here
+};
+
+
+
+function calculationForUnitAndQtyIfUnitChanges(x) {
+    var theRow=x.parentElement.parentElement;
+  var rx=x.parentElement.parentElement.rowIndex;
+
+    var cx= x.parentElement.cellIndex;
+   var  PerUnitPurPrice=theRow.cells[5].innerText;
+    var qty=theRow.cells[2].children[0].value;
+   
+ //  alert(qty);
+   theUnitSelected=x.value;
+    
+   if(theUnitSelected=="MiliGrams"){
+     valu=(PerUnitPurPrice*qty)/1000000;
+   
+   }
+   else if(theUnitSelected=="Grams"){
+
+
+    valu=(PerUnitPurPrice*qty)/1000;
+   
+   }
+   else  if(theUnitSelected=="MiliLitter"){
+     valu=(PerUnitPurPrice*qty)/1000;
+  
+   }
+   else if(theUnitSelected=="KG"){
+    valu=(PerUnitPurPrice*qty);
+   
+
+   }
+   else if(theUnitSelected=="Litter"){
+
+    valu=(PerUnitPurPrice*qty);
+   
+    }
+    else if(theUnitSelected=="Pc"){
+
+        valu=(PerUnitPurPrice*qty);
+
+}
+
+  theRow.cells[4].innerText=valu;
+  calc();
+  
+
+
+   // value of per unit price is got in 
+
+};
+
+
+function IsItemExistInDataTable(item){
+
+
+
+var table = document.getElementById("dataTable");
+for (var i = 0, row; row = table.rows[i]; i++) {
+//iterate through rows
+//rows would be accessed using the "row" variable assigned in the for loop
+//    for (var j = 0, col; col = row.cells[j]; j++) {
+ 
+//    } 
+
+   alert(row.cells[0].innerHTML);
+   alert(item);
+   if(item==row.cells[0].innerHTML){
+
+
+    alert("This item is already Exist in Recipe");
+    
+
+    return false;
+   }
+
+}
+
+return true;
+};
+
+
+function insertRecipeDataToDatabase(){
+
+    var myTrows=[];
+    var table = document.getElementById("dataTable");
+    $('#dataTable tr').each(function(row, tr){
+
+    myTrows[row]=[
+        
+        $(tr).find('td:eq(0)').text(),
+        $(tr).find('td:eq(1)').text(),
+        $(tr).find('td:eq(2) input[type="text"]').val(),
+        $(tr).find('td:eq(3)').find(":selected").val(),
+        $(tr).find('td:eq(4)').text(),
+        $(tr).find('td:eq(5)').text()
+    
+    ];
+    
+
+});
+   
+   alert(myTrows[0]);
+   
+//     var items = [ This might be important 
+//   [myTrows, 2],
+//   [3, 4],
+//   [5, 6]
+// ];
+
+//obj = JSON.parse(mycar);
+var a=JSON.stringify(myTrows)
+
+
+
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        
+      alert("This is comming from Controller" +this.responseText);
+      
+    }
+  };
+  
+  xhttp.open("GET", "./testdata/"+a, true);
+  xhttp.send();
+};
+
+
+
+function saveData(){
+
+    var recipeDataTable = new Array();
+    a=1;
+    $('#dataTable tr').each(function(row, tr){
+
+        recipeDataTable[row]={
+            RMID: $(tr).find('td:eq(0)').text()
+            ,RMName :$(tr).find('td:eq(1)').text()
+            ,RMqty :$(tr).find('td:eq(2)').text()
+            ,RMUNIT :$(tr).find('td:eq(3)').text()
+            ,RMEC :$(tr).find('td:eq(4)').text()
+            ,RMPPU :$(tr).find('td:eq(5)').text()
+        }
+        
+
+        
+
+        
+    });
+    
+    
+    var b=JSON.stringify(recipeDataTable);
+  
+    var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        
+      alert(this.responseText);
+      
+    }
+  };
+  
+  xhttp.open("GET", "./testdata/"+b, true);
+  xhttp.send();
+
+
+};
 
  </script>
 

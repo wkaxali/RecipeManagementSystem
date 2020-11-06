@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\getProductToRawAssociationController;
 use App\Http\Controllers\tblRawMaterialController;
+use App\Http\Controllers\testForJson;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +38,12 @@ Route::get('/es', function () {
 //https://www.w3schools.com/js/js_ajax_database.asp
 Route::get('/dbcheck',function(){
 
-$results=DB::select('select * from vw_producttorecipeview');
+// $results=DB::select('select * from vw_producttorecipeview');
 
-return $results[0]->RMID;
+// return $results[0]->RMID;
+
+$id= DB::insert('insert into tblrawm (MatirialName) values ( ?)', [ 'Dayle']);
+return $id;
 });
 
 
@@ -46,9 +51,16 @@ Route::get('/getAllRecipes/{PID}',[getProductToRawAssociationController::class, 
 Route::get('/getAllMenuItems',[getProductToRawAssociationController::class, 'getAllMenuProducts'] );
 Route::get('/getAllMenuItemsTable',[getProductToRawAssociationController::class, 'getAllMenuProductsTable'] );
 Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getIdealStock'] );
-Route::get('/golakabab/{data}',[getProductToRawAssociationController::class, 'golakabab'] );
+Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getRawMatirialForSearch'] );
 
 Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
+Route::post('/test',[getProductToRawAssociationController::class, 'test'] );
+Route::get('/test2/{data}',[getProductToRawAssociationController::class, 'test2'] );
+
+
+
+
+Route::get('/testdata/{data}',[testForJson::class, 'store'] );
 
 
 
@@ -60,6 +72,12 @@ Route::get('/vrs', function () {
 });
 Route::get('/sis', function () {
     return view('setIdealStock');
+});
+
+
+
+Route::get('/testH', function () {
+    
 });
 Route::get('/arm',function(){
 
