@@ -759,7 +759,7 @@ function insertRecipeDataToDatabase(){
    alert(myTrows[0]);
    
 
-var a=JSON.stringify(myTrows)
+var a=JSON.stringify(myTrows);
 
 
 

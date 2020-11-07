@@ -5,6 +5,7 @@ use App\Http\Controllers\getProductToRawAssociationController;
 use App\Http\Controllers\tblRawMaterialController;
 use App\Http\Controllers\testForJson;
 use App\Http\Controllers\CUDtlbRawtoMenu;
+use App\Http\Controllers\CUDtbltblrawm;
 
 
 /*
@@ -59,6 +60,8 @@ Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
 Route::post('/test',[getProductToRawAssociationController::class, 'test'] );
 Route::get('/UpdateRecipe/{data}/{MenuID}/{TEC}/{TSP}',[CUDtlbRawtoMenu::class, 'UpdateRecipe'] );
 Route::get('/getSalePurchasePrice/{PID}',[CUDtlbRawtoMenu::class, 'getSalePurchasePrice'] );
+Route::get('/insertInRawM/{data}',[CUDtbltblrawm::class, 'insertInRawMateial'] );
+
 
 
 
