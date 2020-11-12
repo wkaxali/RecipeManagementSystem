@@ -70,8 +70,16 @@ Route::get('/testdata/{data}',[testForJson::class, 'store'] );
 
 
 
-Route::get('/chp', function () {
-    return view('changePrice');
+Route::get('/insertData', function () {
+//     for($i=10066;$i<=10139;$i++){
+//     $result= DB::insert('insert into instock (RawMatirialID, StockIn, PreviousStock, PerUnitPurchasePrice) 
+//    values (?,?,?,?)', 
+//    [ $i,'200','150','250']);
+//     }
+
+
+
+
 });
 Route::get('/vrs', function () {
     return view('viewRawMat');

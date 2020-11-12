@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ URL::asset('css/datatables.css') }}" />
     <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    
 
 
     <style>
@@ -282,6 +284,9 @@ background-color: red;
               
                 <div class="col-md-4" id="Menus"  >
                     <!-- the Select menu is comming from database -->
+
+
+                    <!-- there is select field it field are commig from database Select Menu -->
                 </div>
 
 <!-- there is the search modal -->
@@ -382,7 +387,7 @@ background-color: red;
 
                                 </tr>
                             </thead>
-                            <tbody id="dataTable">
+                            <tbody id="dataTable" onchange='searchRawMatirial()'>
 
                                      <!-- this is the Recipe Matirial is displaying from database -->
                                 
@@ -781,7 +786,7 @@ var xhttp = new XMLHttpRequest();
 
 
  </script>
-
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
  
 </body>
 

@@ -159,9 +159,14 @@ class getProductToRawAssociationController extends Controller
 
     public function getAllMenuProducts()
     {
-        
+     //
+
+
+
+
+
     $results=DB::select('select * from tblmenuproducts');
-   $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"selectpicker form-control\"
+   $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"form-control selectpicker\"
                         data-live-search=\"true\" tabindex=\"null\" onchange=\"getRecipes()\" id=\"SelectMenu\">";
                         
                         

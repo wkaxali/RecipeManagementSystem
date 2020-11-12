@@ -264,6 +264,7 @@ background-color: red;
         <div class="row">
             <div class="col-md-3 offset-md-9">
 <button class="btn btn-info" onclick="addRow()">Add Row</button>
+<button  class="btn btn-success" onclick="printDiv()">Print</button>
             </div>
         </div>
     </div>
@@ -310,7 +311,37 @@ background-color: red;
 
 <script>
     
+ function   printDiv(){
+     var myTrows=[];
 
+    $('#dataTable tr').each(function(row, tr){
+
+myTrows[row]=[
+    // //col1 =RMID
+    // col2 =itemName
+    // col3 =qty
+    // clo4 =unitPrice
+    // col5 = PUPP (this is hidden)
+    $(tr).find('td:eq(1) input[type="text"]').val(),
+    $(tr).find('td:eq(2)').find(":selected").val(),
+    $(tr).find('td:eq(3) input[type="text"]').val(),
+    $(tr).find('td:eq(4)').find(":selected").val(),
+    $(tr).find('td:eq(5) input[type="text"]').val(),
+    "<br><hr>"
+
+]});
+
+    var mywindow = window.open('', 'PRINT', 'height=800,width=60');
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write(myTrows);
+    mywindow.document.write('</body></html>');
+    mywindow.print();
+
+    
+
+    }
     // first create TABLE structure with the headers. 
     function createTable() {
         var dataTable = document.createElement('table');
@@ -376,8 +407,20 @@ background-color: red;
                 var ele = document.createElement('select');
                 
                 ele.setAttribute('type', 'select');
-                ele.innerHTML=' <option value="1" >Soups</option>';
-                ele.innerHTML=ele.innerHTML+' <option value="2" >Salads</option>';
+                ele.innerHTML=' <option value="1" >Chicken</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="2" >Beef</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="3" >Sea Food</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="4" >Salads</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="5" >Friuts</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="6" >Spices</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="7" >Lamb</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="8" >Vegitables</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="9" >Herbs</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="10" >Milk</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="11" >Cheez</option>';
+              
+
+
                
 
                 
