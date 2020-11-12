@@ -166,11 +166,11 @@ class getProductToRawAssociationController extends Controller
 
 
     $results=DB::select('select * from tblmenuproducts');
-   $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"form-control selectpicker\"
-                        data-live-search=\"true\" tabindex=\"null\" onchange=\"getRecipes()\" id=\"SelectMenu\">";
+//    $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"form-control selectpicker\"
+//                         data-live-search=\"true\" tabindex=\"null\" onchange=\"getRecipes()\" id=\"SelectMenu\">";
                         
                         
-                    
+                $sOp="";   
                     
     $tableOfHtml="";
         foreach ($results as $ro){
@@ -182,7 +182,7 @@ class getProductToRawAssociationController extends Controller
         }
     
       $endSelect="</select>";
-      $allHtml=$sOp . $tableOfHtml . $endSelect;
+      $allHtml=$sOp . $tableOfHtml ;//$endSelect;
       return $allHtml;   
 
     }

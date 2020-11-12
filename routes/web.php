@@ -93,6 +93,9 @@ Route::get('/sis', function () {
 Route::get('/testH', function () {
     
 });
+Route::get('/cr', function () {
+    return view('cr');
+});
 Route::get('/arm',function(){
 
 
@@ -110,9 +113,9 @@ return view('addRawMat');
 
 
 
-Route::get('/createrecipe',function(){
+Route::get('/createRecipe',function(){
 
-return "Recipe page here";
+return view('createRecipe');
 
 });
 
