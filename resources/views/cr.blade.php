@@ -299,7 +299,8 @@ background-color: red;
               
                 <div class="col-md-4"   >
                     <!-- the Select menu is comming from database -->
-                    <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true">
+                    <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true"
+                    onchange="getRecipes()">
                 
                 </select>
 
@@ -493,12 +494,13 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
         document.getElementById("dataTable").innerHTML =
       this.responseText;
       
-      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+    //  $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
       getSaleAndRecipeCost();
       //calc();
     }
   };
-  var selectedValue=$('#SelectMenu').find(":selected").val();
+  var selectedValue=$('#Menus').find(":selected").val();
+  alert(selectedValue);
 
   xhttp.open("GET", "./getAllRecipes/"+selectedValue, true);
   xhttp.send();
@@ -510,7 +512,7 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
  
 
  function getSaleAndRecipeCost(){
-    var PID=$('#SelectMenu').find(":selected").val();
+    var PID=$('#Menus').find(":selected").val();
     var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -527,7 +529,7 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
      // calc();
     }
   };
-  var selectedValue=$('#SelectMenu').find(":selected").val();
+  var selectedValue=$('#Menus').find(":selected").val();
 
   xhttp.open("GET", "./getSalePurchasePrice/"+PID, true);
   xhttp.send();
@@ -568,7 +570,7 @@ function searchRawMatirial() {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("Menus").innerHTML =
       this.responseText;
-    
+      $('#Menus').selectpicker('refresh');
      // alert(this.responseText);
       searchRawMatirial();
       //alert(this.responseText);
@@ -807,7 +809,7 @@ var xhttp = new XMLHttpRequest();
       
     }
   };
-  var MenuID=$('#SelectMenu').find(":selected").val();
+  var MenuID=$('#Menus').find(":selected").val();
   xhttp.open("GET", "./UpdateRecipe/"+a+"/"+MenuID+"/"+ec+"/"+sp, true);
   xhttp.send();
 };
