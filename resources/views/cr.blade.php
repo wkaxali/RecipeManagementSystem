@@ -10,6 +10,12 @@
     <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+        
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
+    </script>
     
 
 
@@ -387,7 +393,7 @@ background-color: red;
 
                                 </tr>
                             </thead>
-                            <tbody id="dataTable" onchange='searchRawMatirial()'>
+                            <tbody id="dataTable" onchange='calc()'>
 
                                      <!-- this is the Recipe Matirial is displaying from database -->
                                 
@@ -416,6 +422,8 @@ background-color: red;
         </div>
         
     </section>
+
+</body>
 
 
 
@@ -522,8 +530,15 @@ function searchRawMatirial() {
     var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("searchData").innerHTML =
-      this.responseText;
+       var data =   this.responseText;
+       //alert(data);
+       var table;
+       var a=JSON.parse(data);
+       table = $('#searchTable').DataTable();  
+       $.each(a, function(i, item) {
+             table.row.add([ a[i].RawMatirialID, a[i].MatirialName, a[i].Unit,a[i].PerUnitPurchasePrice ]);
+         });   
+         table.draw();            
     }
   };
   
@@ -541,7 +556,9 @@ function searchRawMatirial() {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("Menus").innerHTML =
       this.responseText;
+     // alert(this.responseText);
       searchRawMatirial();
+      //alert(this.responseText);
     }
   };
   
@@ -571,22 +588,26 @@ function searchRawMatirial() {
 $(document).ready(function(){
 
 // code to read selected table row cell data (values).
-$("#searchTable").on('click','.btnSelect',function(){
+$("#searchTable").on('click','tr',function(){
      // get the current row
 
 
 
-
-     var currentRow=$(this).closest("tr"); 
-     
-     var MID=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
-     var Mname=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+     var table = document.getElementById("dataTable");
+    //  var idx = table.cell(this, 0).index();
+    //  var currentRow=$(this).closest("tr").index(); 
+    //  alert(currentRow);
+    //  var data = table.rows( idx.row ).data();
+    //  alert (data[idx.row][0] ) ;
+    // alert (data[idx.row]['M']) ; 
+     var MID=this.cells[0].innerText; // get current row 1st TD value
+     var Mname=this.cells[1].innerText; // get current row 2nd TD
      //var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-     var unit=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-     var pppu=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+     var unit=this.cells[2].innerText; // get current row 3rd TD
+     var pppu=this.cells[3].innerText; // get current row 3rd TD
 if(IsItemExistInDataTable(MID)){
    
-     var table = document.getElementById("dataTable");
+     
   var row = table.insertRow(-1);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);    
@@ -635,9 +656,6 @@ if(IsItemExistInDataTable(MID)){
 
 
 
-$(document).ready( function () {
-    $('#searchTable').DataTable();
-} );
 
 function calculationTrigerOnQtyValueChange(x){
     
@@ -788,7 +806,5 @@ var xhttp = new XMLHttpRequest();
  </script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
  
-</body>
-
 
 </html>

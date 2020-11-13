@@ -54,7 +54,7 @@ Route::get('/getAllRecipes/{PID}',[getProductToRawAssociationController::class, 
 Route::get('/getAllMenuItems',[getProductToRawAssociationController::class, 'getAllMenuProducts'] );
 Route::get('/getAllMenuItemsTable',[getProductToRawAssociationController::class, 'getAllMenuProductsTable'] );
 Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getIdealStock'] );
-Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getRawMatirialForSearch'] );
+Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getRawMatirialForSearch2'] );
 
 Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
 Route::post('/test',[getProductToRawAssociationController::class, 'test'] );

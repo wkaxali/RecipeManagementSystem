@@ -8,11 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-    <link href="/css/app.css" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}"></script>
 
-    
-        <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css') }}" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
 
     <style>
         * {
@@ -261,7 +259,7 @@ background-color: red;
 
 </head>
 
-<body >
+<body onload='getAllMenuItems()'>
     <header>
         <div class="container">
             <div class="row">
@@ -290,12 +288,16 @@ background-color: red;
                     </select>
                 </div>
                 <div class="col-md-5">
-                    <label for="carte" id="Menus">Product Name</label>
+                    <label for="carte">Product Name</label>
 
-                 
+                    <select style="height: 25px !important; width: 158px !important;" class="selectpicker form-control"
+                        data-live-search="true" tabindex="null" id="Menus2">
+                        
+                    </select>
+                    <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true"></select>
                 </div>
 
-                <div class="col-md-2 text-right ">
+                <div  class="col-md-2 text-right ">
 
                     <button type="button" class="btn btn-primary" style="margin-top: 31px;" data-toggle="modal"
                         data-target=".bd-example-modal-xl">Extra large modal</button>
@@ -326,7 +328,45 @@ background-color: red;
                                                     <tbody>
 
 
-                                                       <!-- so there is data from Datbase -->
+                                                        <tr>
+                                                            <td>10/10/2020</td>
+                                                            <td>#232</td>
+                                                            <td>Coffee</td>
+                                                            <td>100</td>
+                                                            <td contenteditable="true">224</td>
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>10/10/2020</td>
+                                                            <td>#232</td>
+                                                            <td>Coffee</td>
+                                                            <td>100</td>
+                                                            <td contenteditable="true">224</td>
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>10/10/2020</td>
+                                                            <td>#232</td>
+                                                            <td>Coffee</td>
+                                                            <td>100</td>
+                                                            <td contenteditable="true">224</td>
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>10/10/2020</td>
+                                                            <td>#232</td>
+                                                            <td>Coffee</td>
+                                                            <td>100</td>
+                                                            <td contenteditable="true">224</td>
+
+
+                                                        </tr>
+
+
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -472,7 +512,11 @@ background-color: red;
     </script>
 
     <!--end::Global Theme Bundle-->
-    <script>
+   
+</body>
+
+
+<script>
         $(document).ready(function () {
             $('#myTable').DataTable();
         });
@@ -480,45 +524,21 @@ background-color: red;
 
 
 
-
-
-
-//         function getAllMenuItems() {
+        function getAllMenuItems() {
    
-//    var xhttp = new XMLHttpRequest();
-//  xhttp.onreadystatechange = function() {
-//    if (this.readyState == 4 && this.status == 200) {
-//        document.getElementById("Menus").innerHTML =   ' <select style="height: 25px !important; width: 158px !important;" class="selectpicker form-control"                data-live-search="true" tabindex="null" id="2">   </select>';                   
-                   
-//     // this.responseText;
-//      alert(this.responseText);
-//      //searchRawMatirial();
-//    }
-//  };
- 
-//  xhttp.open("GET", "./getAllMenuItems", true);
-//  xhttp.send();
-// };
-
-
-
-
-window.onload = function() {
-    var xhttp = new XMLHttpRequest();
+   var xhttp = new XMLHttpRequest();
  xhttp.onreadystatechange = function() {
    if (this.readyState == 4 && this.status == 200) {
-       document.getElementById("Menus").innerHTML =   ' <select style="height: 25px !important; width: 158px !important;" class="selectpicker form-control"                data-live-search="true" tabindex="null" id="2">   </select>';                   
-                   
-    // this.responseText;
-     alert(this.responseText);
-     //searchRawMatirial();
+       document.getElementById("Menus").innerHTML =
+     this.responseText;
+     $('#Menus').selectpicker('refresh');
+    // searchRawMatirial();
    }
  };
  
  xhttp.open("GET", "./getAllMenuItems", true);
  xhttp.send();
-}
+};
     </script>
-</body>
 
 </html>
