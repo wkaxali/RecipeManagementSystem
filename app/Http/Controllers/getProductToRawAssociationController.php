@@ -117,6 +117,7 @@ class getProductToRawAssociationController extends Controller
     public function getRawMatirialForSearch2(){
         $results=DB::select('select * from vw_stockview ');
         
+            
         return $results;
 
     }

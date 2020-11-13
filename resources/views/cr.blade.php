@@ -371,7 +371,10 @@ background-color: red;
     <section class="mt-5">
 
         <div class="container">
-        
+        <select style="height: 25px !important; width: 158px !important;" class="selectpicker form-control"
+                        data-live-search="true" tabindex="null" id="Menus2">
+                        
+                    </select>
         
             <div class="row">
                 <div class="col-md-8 ">
@@ -534,7 +537,8 @@ function searchRawMatirial() {
        //alert(data);
        var table;
        var a=JSON.parse(data);
-       table = $('#searchTable').DataTable();  
+       table = $('#searchTable').DataTable(); 
+        
        $.each(a, function(i, item) {
              table.row.add([ a[i].RawMatirialID, a[i].MatirialName, a[i].Unit,a[i].PerUnitPurchasePrice ]);
          });   
