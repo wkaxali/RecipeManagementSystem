@@ -293,11 +293,23 @@ background-color: red;
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mt-3 ">
-                    <h5>Product Name</h5>
+                <div class="col-md-4  ">
+                <label for="carte">Category</label>
+                    <select style="height: 25px !important; width: 58px !important;" class="selectpicker form-control"
+                        data-live-search="true" tabindex="null">
+                        <option>&nbsp; </option>
+                        <option>Beef Steak</option>
+                        <option>Chiken Steak</option>
+                        <option>020121</option>
+                        <option>875454</option>
+                        <option>Rayan</option>
+                        <option>Naeem</option>
+                    </select>
                 </div>
               
                 <div class="col-md-4"   >
+                <label for="carte">Category</label>
+
                     <!-- the Select menu is comming from database -->
                     <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true"
                     onchange="getRecipes()">
@@ -311,26 +323,19 @@ background-color: red;
 <!-- there is the search modal -->
 
 
-<div class="col-md-4 mt-3">
-                    <button type="button" class="btn btn-info btn-cp" data-toggle="modal"
+<div class="col-md-4 ">
+                    <button type="button" class="btn btn-info btn-cp" style="margin-top:29px;" data-toggle="modal"
                         data-target=".bd-example-modal-xl"></button>
                     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
                         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="searchModal">
-                        <div class="modal-dialog modal-xl">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
-                                <h2 class="text-center mt-5 mb-5">Search</h2>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4 offset-md-4 text-center">
-                                            
-
-                                        </div>
-                                    </div>
-                                </div>
+                            
+                            
 
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-8 offset-md-2 mt-5 mb-5">
+                                        <div class="col-md-12  mt-5 mb-5">
                                             <table class="table table-striped table-bordered " id="searchTable">
                                                 <thead>
                                                     <tr>
@@ -353,11 +358,11 @@ background-color: red;
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 text-right mt-5 mb-5 offset-md-8">
-                                            <button type="button" class="btn btn-org-1"
+                                        <div class="col-md-4 text-right mb-2  offset-md-8">
+                                            <button type="button" class="btn btn-danger btn-org-1"
                                                 data-dismiss="modal">Close</button>
                                             <button type="submit" data-dismiss="modal"
-                                                class="btn btn-org-1">Okay</button>
+                                                class="btn btn-org-1 btn-success">Okay</button>
 
                                         </div>
                                     </div>
@@ -421,6 +426,13 @@ background-color: red;
                     <label for="Sale">Sale Price</label>
                     <input type="text" class="form-control" name="TotalsalePrice" id="TotalsalePrice" value="0.0">
                     <br>
+                    <div class="textAREA">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Procedure</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                style="height: 180px; resize: none;"></textarea>
+                        </div>
+                    </div>
                     <div class="sale-buttons">
                         <button class="btn btn-info">Edit</button>
                         <button class="btn btn-danger" onclick='check()'>Delete</button>
@@ -494,7 +506,7 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
         document.getElementById("dataTable").innerHTML =
       this.responseText;
       
-    //  $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
       getSaleAndRecipeCost();
       //calc();
     }
@@ -826,9 +838,7 @@ var xhttp = new XMLHttpRequest();
 
 
     <!-- jQuery and JS bundle w/ Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
