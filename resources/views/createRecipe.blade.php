@@ -290,11 +290,13 @@ background-color: red;
                 <div class="col-md-5">
                     <label for="carte">Product Name</label>
 
-                    <select style="height: 25px !important; width: 158px !important;" class="selectpicker form-control"
+                    <!-- <select style="height: 25px !important; width: 158px !important;" class="selectpicker form-control"
                         data-live-search="true" tabindex="null" id="Menus2">
                         
-                    </select>
-                    <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true"></select>
+                    </select> -->
+                    <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true">
+                
+                </select>
                 </div>
 
                 <div  class="col-md-2 text-right ">

@@ -183,8 +183,10 @@ class getProductToRawAssociationController extends Controller
 
 
     $results=DB::select('select * from tblmenuproducts');
-   $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"php arz\"
-                        data-live-search=\"true\" tabindex=\"null\" onchange=\"getRecipes()\" id=\"SelectMenu\">";
+//    $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"form-control selectpicker\"
+//                         data-live-search=\"true\" tabindex=\"null\" onchange=\"getRecipes()\" id=\"SelectMenu\">";
+                       // $sOp='<select data-live-search="true" class="form-control ">';
+                       $sOp='';
                         
                         
                     

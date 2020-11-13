@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     
-    <link href="/css/app.css" rel="stylesheet">
+    <!-- <link href="/css/app.css" rel="stylesheet">
     
     <link rel="stylesheet" href="{{ URL::asset('css/datatables.css') }}" />
     <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
@@ -15,7 +15,16 @@
         
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
-    </script>
+    </script> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
     
 
 
@@ -288,8 +297,11 @@ background-color: red;
                     <h5>Product Name</h5>
                 </div>
               
-                <div class="col-md-4" id="Menus"  >
+                <div class="col-md-4"   >
                     <!-- the Select menu is comming from database -->
+                    <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true">
+                
+                </select>
 
 
                     <!-- there is select field it field are commig from database Select Menu -->
@@ -309,8 +321,7 @@ background-color: red;
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-4 offset-md-4 text-center">
-                                            <input type="search" data-live-search="true" class="form-control" name=""
-                                                id="">
+                                            
 
                                         </div>
                                     </div>
@@ -371,10 +382,7 @@ background-color: red;
     <section class="mt-5">
 
         <div class="container">
-        <select style="height: 25px !important; width: 158px !important;" class="selectpicker form-control"
-                        data-live-search="true" tabindex="null" id="Menus2">
-                        
-                    </select>
+  
         
             <div class="row">
                 <div class="col-md-8 ">
@@ -560,6 +568,7 @@ function searchRawMatirial() {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("Menus").innerHTML =
       this.responseText;
+    
      // alert(this.responseText);
       searchRawMatirial();
       //alert(this.responseText);
@@ -808,7 +817,28 @@ var xhttp = new XMLHttpRequest();
 
 
  </script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+ <script>
+        var HOST_URL = "https://keenthemes.com/metronic/tools/preview";
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
+    </script>
+
+    <!--end::Global Theme Bundle-->
+   
  
 
 </html>
