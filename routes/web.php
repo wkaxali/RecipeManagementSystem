@@ -6,6 +6,7 @@ use App\Http\Controllers\tblRawMaterialController;
 use App\Http\Controllers\testForJson;
 use App\Http\Controllers\CUDtlbRawtoMenu;
 use App\Http\Controllers\CUDtbltblrawm;
+use App\Http\Controllers\tblMenuProducts;
 
 
 /*
@@ -28,7 +29,7 @@ Route::get('/cp', function () {
 
 
 Route::get('/addNewMenu', function () {
-    return view('addMenuItems');
+    return view('addMenu');
 });
 
 Route::get('/es', function () {
@@ -61,7 +62,8 @@ Route::post('/test',[getProductToRawAssociationController::class, 'test'] );
 Route::get('/UpdateRecipe/{data}/{MenuID}/{TEC}/{TSP}',[CUDtlbRawtoMenu::class, 'UpdateRecipe'] );
 Route::get('/getSalePurchasePrice/{PID}',[CUDtlbRawtoMenu::class, 'getSalePurchasePrice'] );
 Route::get('/insertInRawM/{data}',[CUDtbltblrawm::class, 'insertInRawMateial'] );
-
+Route::get('/insertInRawM/{data}',[CUDtbltblrawm::class, 'insertInRawMateial'] );
+Route::get('/insertProducts/{data}',[tblMenuProducts::class, 'insertProducts'] );
 
 
 

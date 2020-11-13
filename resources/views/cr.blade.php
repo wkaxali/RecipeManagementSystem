@@ -477,7 +477,7 @@ function check(){
 
 
     var data=table.$('input, select').serialize();
-    alert(data);
+   // alert(data);
 }
  function calc() {
 
@@ -506,13 +506,13 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
         document.getElementById("dataTable").innerHTML =
       this.responseText;
       
-      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1200);
       getSaleAndRecipeCost();
       //calc();
     }
   };
   var selectedValue=$('#Menus').find(":selected").val();
-  alert(selectedValue);
+  //alert(selectedValue);
 
   xhttp.open("GET", "./getAllRecipes/"+selectedValue, true);
   xhttp.send();
