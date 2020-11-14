@@ -284,11 +284,11 @@
                                 <label for="prodName">Category</label>
                                 <select style="height: 25px !important; width: 158px !important;"
                                     class="selectpicker form-control" id="category" tabindex="null">
-                                    <option>Soups</option>
-                                    <option>Salads</option>
-                                    <option>Chiness</option>
-                                    <option>Continantal</option>
-                                    <option>Bar B Q</option>
+                                    <option value=1>Soups</option>
+                                    <option value=2>Salads</option>
+                                    <option value=3>Chiness</option>
+                                    <option value=4>Continantal</option>
+                                    <option value=5>Bar B Q</option>
                                    
                                 </select>
                            

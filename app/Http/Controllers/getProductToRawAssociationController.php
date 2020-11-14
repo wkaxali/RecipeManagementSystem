@@ -58,14 +58,14 @@ class getProductToRawAssociationController extends Controller
                                     <td 'name=RMID'>". $ro->RMID . "</td>
                                     <td id='DTMID'>".$ro->MatirialName."</td>
                                  
-                                    <td> <input type=\"text\" onchange=\"calculationTrigerOnQtyValueChange(this)\" value=".$ro->Quantity." name='qty[]'></td>
+                                    <td> <input type=\"text\"   onchange=\"calculationTrigerOnQtyValueChange(this)\" value=".$ro->Quantity." name='qty[]'></td>
                                     <td>   <select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'> 
 
                                     <option value=".$ro->Unit.">".$ro->Unit."</option> 
                                     </select></td>
                                     <td >".$ro->ECost."</td>
                                     <td style=\"display: none;\" id='perUnitPurchasePriceInDataTable'>". $ro->PerUnitPurchasePrice . "</td>
-
+                                    <td><button id=\"DelButton\"class=\"btn btn-danger\" style=\"height: 25px;\" value=\"x\" text=\"x\" onclick=\"RemoveThisRow(this)\"></button></td>
 
                                 </tr>";
 

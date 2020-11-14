@@ -434,7 +434,7 @@ background-color: red;
                         </div>
                     </div>
                     <div class="sale-buttons">
-                        <button class="btn btn-info">Edit</button>
+                        <button class="btn btn-info" onclick='showDelButton()'>Edit</button>
                         <button class="btn btn-danger" onclick='check()'>Delete</button>
                         <button class="btn btn-success" onclick="insertRecipeDataToDatabase()">Save</button>
                         
@@ -505,10 +505,12 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("dataTable").innerHTML =
       this.responseText;
+      alert( this.responseText);
       
       $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1200);
       getSaleAndRecipeCost();
       //calc();
+      
     }
   };
   var selectedValue=$('#Menus').find(":selected").val();
@@ -642,6 +644,7 @@ if(IsItemExistInDataTable(MID)){
   var cell4 = row.insertCell(3);
   var cell5 = row.insertCell(4);
   var cell6 = row.insertCell(5);
+  var cell7=row.insertCell(6);
 
   cell1.innerHTML = MID;
   cell2.innerHTML = Mname; 
@@ -674,6 +677,8 @@ if(IsItemExistInDataTable(MID)){
 
   cell6.innerHTML=pppu;
   cell6.style.display = "none";
+  cell7.innerHTML="<button id='DelButton'class=\"btn btn-danger\" style=\"height: 25px;\" value='x' text='x' onclick='RemoveThisRow(this)'></button>";
+  
 }
 });
 });
@@ -827,9 +832,18 @@ var xhttp = new XMLHttpRequest();
 };
 
 
+function RemoveThisRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  //alert(i);
+  document.getElementById("dataTable").deleteRow(i-1);
+  calc();
+}
 
+function showDelButton(){
 
-
+   
+  
+}
  </script>
  <script>
         var HOST_URL = "https://keenthemes.com/metronic/tools/preview";

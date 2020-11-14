@@ -41,9 +41,10 @@ class tblMenuProducts extends Controller
     
     
         
-    $result= DB::insert("insert into tblmenuproducts(ProductName, Discrption, SalePrice, RecipeCost, Category) 
-    values ('?','?','?','?','?')", 
-    [$MProductName,$MDiscrption,$MSalePrice,$MRecipeCost,$MCategory]);
+        $result= DB::insert('insert into tblmenuproducts(ProductName, Discrption, SalePrice, RecipeCost, Category) 
+        values (?,?,?,?,?)', 
+        [$MProductName,$MDiscrption,$MSalePrice,$MRecipeCost,'1']);
+    
     //DB::insert('insert into tblrawm ( MatirialName ,CategoryID,Unit) values (?, ?,?)', [$MName,$cat,$unit]);
     
     if($result==1){
