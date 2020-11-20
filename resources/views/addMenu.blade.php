@@ -290,6 +290,11 @@
                                     <option value=4>Continantal</option>
                                     <option value=5>Bar B Q</option>
                                    
+                                    <option value=6>Default</option>
+                                    <option value=7>fries</option>
+                                    <option value=8>Sauce</option>
+                                    <option value=8>FISH</option>
+                                   
                                 </select>
                            
                                 <label for="cost">Cost</label>

@@ -119,7 +119,7 @@
 }
 
 .ent-table {
-    height: 350px !important;
+    height: 430px !important;
 }
 
 .up-btn {
@@ -156,6 +156,10 @@
 
 .offme-10 input {
     margin: 5px 0px !important;
+}
+.offme-10{
+    border:1px solid #E5EAEE;
+    border-radius:10px;
 }
 
 
@@ -235,21 +239,20 @@ background-color: red;
                    
                 </select>
                 </div>
-                <div class="col-md-5">
-                    <label for="Quantity" style="width: 85px;" >Quantity</label>
-                    <input type="text" class="form-control-1" name="Quantity" id="qty">   
-                      <button class="btn ml-5 btn-success" onclick="AddRowInSalesTable()">Add Sale</button>
-                      <input type="text" class="form-control-1" name="salePrice" id="salePrice"> 
-                      <input type="text" class="form-control-1" name="recipeCost" id="recipeCost">  
+                <div class="col-md-4" style="margin-top:5px;">
+                    <label for="Quantity" style="width: 85px;" >Quantity</label><br>
+                    <input type="text" class="form-control"  name="Quantity" style="display:inline-block; width:250px; " id="qty">   
+                      <button class="btn btn-success"  style="margin-top:-6px;" onclick="AddRowInSalesTable()">Add Sale</button>
+                   <input type="text" class="form-control-1" style="display:none;" name="salePrice" id="salePrice"> 
+                      <input type="text" class="form-control-1" style="display:none;" name="recipeCost" id="recipeCost">   
                 </div>
-                <div class="col-lg-3">
-                    <div class="input-group date">
-                        <input type="text" class="form-control" placeholder="Select date" id="kt_datetimepicker_6" />
+                <div class="col-lg-4">
+                  
+                    <label for="Quantity" style="width: 85px;" >Date</label>
+                        <input type="date" class="form-control" placeholder="Select date"  />
                         <div class="input-group-append">
-                            <span class="input-group-text">
-                                <i class="la la-calendar glyphicon-th"></i>
-                            </span>
-                        </div>
+                       
+                  
                     </div>
                 </div>
                 
@@ -263,7 +266,7 @@ background-color: red;
 
         <div class="row">
             <div class="col-md-8 ">
-                <div class="ent-table">
+                <div class="ent-table" style="overflow:auto;">
                     <table class="table table-bordered" id="SalesTable">
                         <thead>
                             <tr>
@@ -287,13 +290,13 @@ background-color: red;
             </div>
             <div class="col-md-4 offme-10">
                 <label for="g-total">Grand Total</label>
-                <input type="text"   class="form-control-1" id="TotalSales"><br>
+                <input type="text"   class="form-control" id="TotalSales"><br>
                 <label for="g-total">Raw Items Consumed</label>
-                <input type="text"  class="form-control-1" id="TotalCost"><br>
+                <input type="text"  class="form-control" id="TotalCost"><br>
                 <label for="g-total">Profit w/o Operational Const</label>
-                <input type="text"  class="form-control-1"id="profit"><br>
+                <input type="text"  class="form-control"id="profit">
              
-                    <button style="margin-left:100px;" class="btn btn-success up-btn">Update</button>
+                    <button style="margin-left:230px;" class="btn btn-success up-btn">Update</button>
   
             </div>
         </div>
