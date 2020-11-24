@@ -7,6 +7,7 @@ use App\Http\Controllers\testForJson;
 use App\Http\Controllers\CUDtlbRawtoMenu;
 use App\Http\Controllers\CUDtbltblrawm;
 use App\Http\Controllers\tblMenuProducts;
+use App\Http\Controllers\tblSalesController;
 
 
 /*
@@ -66,7 +67,9 @@ Route::get('/insertInRawM/{data}',[CUDtbltblrawm::class, 'insertInRawMateial'] )
 Route::get('/insertProducts/{data}',[tblMenuProducts::class, 'insertProducts'] );
 
 
-
+///////////////////////////// this is sales routes here//////////////////////////////
+Route::get('/addSale/{data}',[tblSalesController::class, 'addSale'] );
+//////////////////////////////////sales end heres//////////////////////////////////
 
 Route::get('/testdata/{data}',[testForJson::class, 'store'] );
 

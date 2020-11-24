@@ -296,7 +296,7 @@ background-color: red;
                 <label for="g-total">Profit w/o Operational Const</label>
                 <input type="text"  class="form-control"id="profit">
              
-                    <button style="margin-left:230px;" class="btn btn-success up-btn">Update</button>
+                    <button style="margin-left:230px;" class="btn btn-success up-btn" onclick="seveSale()">Update</button>
   
             </div>
         </div>
@@ -341,7 +341,73 @@ background-color: red;
 
 <script>
 
+function seveSale(){
 
+    var myTrows=[];
+    var table = document.getElementById("SalesTable");
+    
+   
+   
+    $('#SalesTable tr').each(function(row, tr){
+
+    myTrows[row]=[
+        // //col1 =RMID
+        // col2 =itemName
+        // col3 =qty
+        // clo4 =unitPrice
+        // col5 = PUPP (this is hidden)
+        $(tr).find('td:eq(0)').text(),
+        $(tr).find('td:eq(1)').text(),
+        $(tr).find('td:eq(2) ').text(),
+        $(tr).find('td:eq(3)').text(),
+        $(tr).find('td:eq(4)').text(),
+        $(tr).find('td:eq(5)').text(),
+        $(tr).find('td:eq(6)').text()
+    
+    ];
+    
+
+});
+myTrows.shift();
+   
+   alert(myTrows);
+   var a=JSON.stringify(myTrows);
+
+   var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var mydata = this.response;
+       
+        
+        
+       alert( mydata);
+
+      
+     
+    }
+  };
+  
+
+  xhttp.open("GET", "./addSale/"+a, true);
+  xhttp.send();
+ 
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+};
 function getAllMenuItems() {
    
    var xhttp = new XMLHttpRequest();

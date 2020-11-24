@@ -661,8 +661,8 @@ if(IsItemExistInDataTable(MID)){
     cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
     //alert("whatssss");
   }
-  else if (unit=="Litter" || unit=="litter"){
-    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
+  else if (unit=="Litters" || unit=="litter"){
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Litters\">Litters</option>  <option value=\"MiliLitters\">MiliLitters (ml)</option>    </select>";;   
 
   }
   else if (unit=="Pc"){
