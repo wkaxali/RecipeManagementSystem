@@ -5,6 +5,9 @@ use App\Http\Controllers\getProductToRawAssociationController;
 use App\Http\Controllers\tblRawMaterialController;
 use App\Http\Controllers\testForJson;
 use App\Http\Controllers\CUDtlbRawtoMenu;
+use App\Http\Controllers\CUDtbltblrawm;
+use App\Http\Controllers\tblMenuProducts;
+use App\Http\Controllers\tblSalesController;
 
 
 /*
@@ -27,7 +30,7 @@ Route::get('/cp', function () {
 
 
 Route::get('/addNewMenu', function () {
-    return view('addMenuItems');
+    return view('addMenu');
 });
 
 Route::get('/es', function () {
@@ -53,22 +56,35 @@ Route::get('/getAllRecipes/{PID}',[getProductToRawAssociationController::class, 
 Route::get('/getAllMenuItems',[getProductToRawAssociationController::class, 'getAllMenuProducts'] );
 Route::get('/getAllMenuItemsTable',[getProductToRawAssociationController::class, 'getAllMenuProductsTable'] );
 Route::get('/getIdealStock',[getProductToRawAssociationController::class, 'getIdealStock'] );
-Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getRawMatirialForSearch'] );
+Route::get('/getRawMatirial',[getProductToRawAssociationController::class, 'getRawMatirialForSearch2'] );
 
 Route::get('/zuha',[tblRawMaterialController::class, 'deleteintblsales'] );
 Route::post('/test',[getProductToRawAssociationController::class, 'test'] );
 Route::get('/UpdateRecipe/{data}/{MenuID}/{TEC}/{TSP}',[CUDtlbRawtoMenu::class, 'UpdateRecipe'] );
 Route::get('/getSalePurchasePrice/{PID}',[CUDtlbRawtoMenu::class, 'getSalePurchasePrice'] );
+Route::get('/insertInRawM/{data}',[CUDtbltblrawm::class, 'insertInRawMateial'] );
+Route::get('/insertInRawM/{data}',[CUDtbltblrawm::class, 'insertInRawMateial'] );
+Route::get('/insertProducts/{data}',[tblMenuProducts::class, 'insertProducts'] );
 
 
-
+///////////////////////////// this is sales routes here//////////////////////////////
+Route::get('/addSale/{data}',[tblSalesController::class, 'addSale'] );
+//////////////////////////////////sales end heres//////////////////////////////////
 
 Route::get('/testdata/{data}',[testForJson::class, 'store'] );
 
 
 
-Route::get('/chp', function () {
-    return view('changePrice');
+Route::get('/insertData', function () {
+//     for($i=10066;$i<=10139;$i++){
+//     $result= DB::insert('insert into instock (RawMatirialID, StockIn, PreviousStock, PerUnitPurchasePrice) 
+//    values (?,?,?,?)', 
+//    [ $i,'200','150','250']);
+//     }
+
+
+
+
 });
 Route::get('/vrs', function () {
     return view('viewRawMat');
@@ -81,6 +97,9 @@ Route::get('/sis', function () {
 
 Route::get('/testH', function () {
     
+});
+Route::get('/cr', function () {
+    return view('cr');
 });
 Route::get('/arm',function(){
 
@@ -99,9 +118,9 @@ return view('addRawMat');
 
 
 
-Route::get('/createrecipe',function(){
+Route::get('/createRecipe',function(){
 
-return "Recipe page here";
+return view('createRecipe');
 
 });
 

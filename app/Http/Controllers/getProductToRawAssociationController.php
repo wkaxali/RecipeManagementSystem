@@ -58,14 +58,14 @@ class getProductToRawAssociationController extends Controller
                                     <td 'name=RMID'>". $ro->RMID . "</td>
                                     <td id='DTMID'>".$ro->MatirialName."</td>
                                  
-                                    <td> <input type=\"text\" onchange=\"calculationTrigerOnQtyValueChange(this)\" value=".$ro->Quantity." name='qty[]'></td>
+                                    <td> <input type=\"text\"   onchange=\"calculationTrigerOnQtyValueChange(this)\" value=".$ro->Quantity." name='qty[]'></td>
                                     <td>   <select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'> 
 
                                     <option value=".$ro->Unit.">".$ro->Unit."</option> 
                                     </select></td>
                                     <td >".$ro->ECost."</td>
                                     <td style=\"display: none;\" id='perUnitPurchasePriceInDataTable'>". $ro->PerUnitPurchasePrice . "</td>
-
+                                    <td><button id=\"DelButton\"class=\"btn btn-danger\" style=\"height: 25px;\" value=\"x\" text=\"x\" onclick=\"RemoveThisRow(this)\"></button></td>
 
                                 </tr>";
 
@@ -105,6 +105,23 @@ class getProductToRawAssociationController extends Controller
         return $tableOfHtml;
 
     }
+
+
+
+
+
+
+
+
+
+    public function getRawMatirialForSearch2(){
+        $results=DB::select('select * from vw_stockview ');
+        
+            
+        return $results;
+
+    }
+
 
     public function getAllMenuProductsTable()
     {
@@ -159,10 +176,17 @@ class getProductToRawAssociationController extends Controller
 
     public function getAllMenuProducts()
     {
-        
+     //
+
+
+
+
+
     $results=DB::select('select * from tblmenuproducts');
-   $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"selectpicker form-control\"
-                        data-live-search=\"true\" tabindex=\"null\" onchange=\"getRecipes()\" id=\"SelectMenu\">";
+//    $sOp=" <select style=\"height: 45px !important; width: 298px !important;\" class=\"form-control selectpicker\"
+//                         data-live-search=\"true\" tabindex=\"null\" onchange=\"getRecipes()\" id=\"SelectMenu\">";
+                       // $sOp='<select data-live-search="true" class="form-control ">';
+                       $sOp='';
                         
                         
                     

@@ -4,11 +4,28 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <!-- <link href="/css/app.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="{{ URL::asset('css/datatables.css') }}" />
     <script type="text/javascript" src="{{ URL::asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+        
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
+    </script> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+    
 
 
     <style>
@@ -276,38 +293,49 @@ background-color: red;
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mt-3 ">
-                    <h5>Product Name</h5>
+                <div class="col-md-4  ">
+                <label for="carte">Category</label>
+                    <select style="height: 25px !important; width: 58px !important;" class="selectpicker form-control"
+                        data-live-search="true" tabindex="null">
+                        <option>&nbsp; </option>
+                        <option>Beef Steak</option>
+                        <option>Chiken Steak</option>
+                        <option>020121</option>
+                        <option>875454</option>
+                        <option>Rayan</option>
+                        <option>Naeem</option>
+                    </select>
                 </div>
               
-                <div class="col-md-4" id="Menus"  >
+                <div class="col-md-4"   >
+                <label for="carte">Category</label>
+
                     <!-- the Select menu is comming from database -->
+                    <select   class="selectpicker form-control" style="height: 25px !important; width: 208px !important;"name="n" id="Menus" data-live-search="true"
+                    onchange="getRecipes()">
+                
+                </select>
+
+
+                    <!-- there is select field it field are commig from database Select Menu -->
                 </div>
 
 <!-- there is the search modal -->
 
 
-<div class="col-md-4 mt-3">
-                    <button type="button" class="btn btn-info btn-cp" data-toggle="modal"
+<div class="col-md-4 ">
+                    <button type="button" class="btn btn-info btn-cp" style="margin-top:29px;" data-toggle="modal"
                         data-target=".bd-example-modal-xl"></button>
                     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog"
                         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="searchModal">
-                        <div class="modal-dialog modal-xl">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
-                                <h2 class="text-center mt-5 mb-5">Search</h2>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4 offset-md-4 text-center">
-                                            <input type="search" data-live-search="true" class="form-control" name=""
-                                                id="">
-
-                                        </div>
-                                    </div>
-                                </div>
+                            
+                            
 
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-8 offset-md-2 mt-5 mb-5">
+                                        <div class="col-md-12  mt-5 mb-5">
                                             <table class="table table-striped table-bordered " id="searchTable">
                                                 <thead>
                                                     <tr>
@@ -330,11 +358,11 @@ background-color: red;
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 text-right mt-5 mb-5 offset-md-8">
-                                            <button type="button" class="btn btn-org-1"
+                                        <div class="col-md-4 text-right mb-2  offset-md-8">
+                                            <button type="button" class="btn btn-danger btn-org-1"
                                                 data-dismiss="modal">Close</button>
                                             <button type="submit" data-dismiss="modal"
-                                                class="btn btn-org-1">Okay</button>
+                                                class="btn btn-org-1 btn-success">Okay</button>
 
                                         </div>
                                     </div>
@@ -360,7 +388,7 @@ background-color: red;
     <section class="mt-5">
 
         <div class="container">
-        
+  
         
             <div class="row">
                 <div class="col-md-8 ">
@@ -382,7 +410,7 @@ background-color: red;
 
                                 </tr>
                             </thead>
-                            <tbody id="dataTable">
+                            <tbody id="dataTable" onchange='calc()'>
 
                                      <!-- this is the Recipe Matirial is displaying from database -->
                                 
@@ -398,8 +426,15 @@ background-color: red;
                     <label for="Sale">Sale Price</label>
                     <input type="text" class="form-control" name="TotalsalePrice" id="TotalsalePrice" value="0.0">
                     <br>
+                    <div class="textAREA">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Procedure</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                style="height: 180px; resize: none;"></textarea>
+                        </div>
+                    </div>
                     <div class="sale-buttons">
-                        <button class="btn btn-info">Edit</button>
+                        <button class="btn btn-info" onclick='showDelButton()'>Edit</button>
                         <button class="btn btn-danger" onclick='check()'>Delete</button>
                         <button class="btn btn-success" onclick="insertRecipeDataToDatabase()">Save</button>
                         
@@ -411,6 +446,8 @@ background-color: red;
         </div>
         
     </section>
+
+</body>
 
 
 
@@ -440,7 +477,7 @@ function check(){
 
 
     var data=table.$('input, select').serialize();
-    alert(data);
+   // alert(data);
 }
  function calc() {
 
@@ -468,13 +505,16 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("dataTable").innerHTML =
       this.responseText;
+      alert( this.responseText);
       
-      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1200);
       getSaleAndRecipeCost();
       //calc();
+      
     }
   };
-  var selectedValue=$('#SelectMenu').find(":selected").val();
+  var selectedValue=$('#Menus').find(":selected").val();
+  //alert(selectedValue);
 
   xhttp.open("GET", "./getAllRecipes/"+selectedValue, true);
   xhttp.send();
@@ -486,7 +526,7 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
  
 
  function getSaleAndRecipeCost(){
-    var PID=$('#SelectMenu').find(":selected").val();
+    var PID=$('#Menus').find(":selected").val();
     var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -503,7 +543,7 @@ document.getElementById('TotalEstimatePrice').value = total.toFixed(2);
      // calc();
     }
   };
-  var selectedValue=$('#SelectMenu').find(":selected").val();
+  var selectedValue=$('#Menus').find(":selected").val();
 
   xhttp.open("GET", "./getSalePurchasePrice/"+PID, true);
   xhttp.send();
@@ -517,8 +557,16 @@ function searchRawMatirial() {
     var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("searchData").innerHTML =
-      this.responseText;
+       var data =   this.responseText;
+       //alert(data);
+       var table;
+       var a=JSON.parse(data);
+       table = $('#searchTable').DataTable(); 
+        
+       $.each(a, function(i, item) {
+             table.row.add([ a[i].RawMatirialID, a[i].MatirialName, a[i].Unit,a[i].PerUnitPurchasePrice ]);
+         });   
+         table.draw();            
     }
   };
   
@@ -536,7 +584,10 @@ function searchRawMatirial() {
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("Menus").innerHTML =
       this.responseText;
+      $('#Menus').selectpicker('refresh');
+     // alert(this.responseText);
       searchRawMatirial();
+      //alert(this.responseText);
     }
   };
   
@@ -566,22 +617,26 @@ function searchRawMatirial() {
 $(document).ready(function(){
 
 // code to read selected table row cell data (values).
-$("#searchTable").on('click','.btnSelect',function(){
+$("#searchTable").on('click','tr',function(){
      // get the current row
 
 
 
-
-     var currentRow=$(this).closest("tr"); 
-     
-     var MID=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
-     var Mname=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+     var table = document.getElementById("dataTable");
+    //  var idx = table.cell(this, 0).index();
+    //  var currentRow=$(this).closest("tr").index(); 
+    //  alert(currentRow);
+    //  var data = table.rows( idx.row ).data();
+    //  alert (data[idx.row][0] ) ;
+    // alert (data[idx.row]['M']) ; 
+     var MID=this.cells[0].innerText; // get current row 1st TD value
+     var Mname=this.cells[1].innerText; // get current row 2nd TD
      //var qty=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-     var unit=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-     var pppu=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+     var unit=this.cells[2].innerText; // get current row 3rd TD
+     var pppu=this.cells[3].innerText; // get current row 3rd TD
 if(IsItemExistInDataTable(MID)){
    
-     var table = document.getElementById("dataTable");
+     
   var row = table.insertRow(-1);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);    
@@ -589,6 +644,7 @@ if(IsItemExistInDataTable(MID)){
   var cell4 = row.insertCell(3);
   var cell5 = row.insertCell(4);
   var cell6 = row.insertCell(5);
+  var cell7=row.insertCell(6);
 
   cell1.innerHTML = MID;
   cell2.innerHTML = Mname; 
@@ -605,8 +661,8 @@ if(IsItemExistInDataTable(MID)){
     cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"KG\">KG</option>  <option value=\"Grams\">Grams</option>    <option value=\"MiliGrams\">MiliGrams</option></select>";;   
     //alert("whatssss");
   }
-  else if (unit=="Litter" || unit=="litter"){
-    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Litter\">Litter</option>  <option value=\"MiliLitter\">MiliLitter (ml)</option>    </select>";;   
+  else if (unit=="Litters" || unit=="litter"){
+    cell4.innerHTML="<select onchange=\"calculationForUnitAndQtyIfUnitChanges(this)\" id='unitCellInDataTable'>  <option value=\"Litters\">Litters</option>  <option value=\"MiliLitters\">MiliLitters (ml)</option>    </select>";;   
 
   }
   else if (unit=="Pc"){
@@ -621,6 +677,8 @@ if(IsItemExistInDataTable(MID)){
 
   cell6.innerHTML=pppu;
   cell6.style.display = "none";
+  cell7.innerHTML="<button id='DelButton'class=\"btn btn-danger\" style=\"height: 25px;\" value='x' text='x' onclick='RemoveThisRow(this)'></button>";
+  
 }
 });
 });
@@ -630,9 +688,6 @@ if(IsItemExistInDataTable(MID)){
 
 
 
-$(document).ready( function () {
-    $('#searchTable').DataTable();
-} );
 
 function calculationTrigerOnQtyValueChange(x){
     
@@ -759,7 +814,7 @@ function insertRecipeDataToDatabase(){
    alert(myTrows[0]);
    
 
-var a=JSON.stringify(myTrows)
+var a=JSON.stringify(myTrows);
 
 
 
@@ -771,19 +826,45 @@ var xhttp = new XMLHttpRequest();
       
     }
   };
-  var MenuID=$('#SelectMenu').find(":selected").val();
+  var MenuID=$('#Menus').find(":selected").val();
   xhttp.open("GET", "./UpdateRecipe/"+a+"/"+MenuID+"/"+ec+"/"+sp, true);
   xhttp.send();
 };
 
 
+function RemoveThisRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  //alert(i);
+  document.getElementById("dataTable").deleteRow(i-1);
+  calc();
+}
 
+function showDelButton(){
 
-
+   
+  
+}
  </script>
+ <script>
+        var HOST_URL = "https://keenthemes.com/metronic/tools/preview";
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js">
+    </script>
+
+    <!--end::Global Theme Bundle-->
+   
  
-</body>
-
 
 </html>

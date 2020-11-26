@@ -250,7 +250,7 @@ background-color: red;
 
 </head>
 
-<body onload="createTable()">
+<body >
     <header class="mt-5 mb-5">
         <div class="container">
             <div class="row">
@@ -264,6 +264,7 @@ background-color: red;
         <div class="row">
             <div class="col-md-3 offset-md-9">
 <button class="btn btn-info" onclick="addRow()">Add Row</button>
+<button  class="btn btn-success" onclick="printDiv()">Print</button>
             </div>
         </div>
     </div>
@@ -296,6 +297,7 @@ background-color: red;
             <div class="row">
                 <div class="col-md-2 offset-md-10 text-right">
                     <button  class="btn btn-success" onclick="insertRecipeDataToDatabase()">Update</button>
+                    
                 </div>
             </div>
         </div>
@@ -308,20 +310,49 @@ background-color: red;
 
 
 <script>
-    var arrHead = new Array();	// array for header.
-    arrHead = ['', 'Employee Name', 'Designation', 'Age', '', ''];
+    
+ function   printDiv(){
+     var myTrows=[];
 
+    $('#dataTable tr').each(function(row, tr){
+
+myTrows[row]=[
+    // //col1 =RMID
+    // col2 =itemName
+    // col3 =qty
+    // clo4 =unitPrice
+    // col5 = PUPP (this is hidden)
+    $(tr).find('td:eq(1) input[type="text"]').val(),
+    $(tr).find('td:eq(2)').find(":selected").val(),
+    $(tr).find('td:eq(3) input[type="text"]').val(),
+    $(tr).find('td:eq(4)').find(":selected").val(),
+    $(tr).find('td:eq(5) input[type="text"]').val(),
+    "<br><hr>"
+
+]});
+
+    var mywindow = window.open('', 'PRINT', 'height=800,width=60');
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write(myTrows);
+    mywindow.document.write('</body></html>');
+    mywindow.print();
+
+    
+
+    }
     // first create TABLE structure with the headers. 
     function createTable() {
         var dataTable = document.createElement('table');
         dataTable.setAttribute('id', 'dataTable'); // table id.
 
-        var tr = dataTable.insertRow(-1);
-        for (var h = 0; h < arrHead.length; h++) {
-            var th = document.createElement('th'); // create table headers
-            th.innerHTML = arrHead[h];
-            tr.appendChild(th);
-        }
+        // var tr = dataTable.insertRow(-1);
+        // for (var h = 0; h < arrHead.length; h++) {
+        //     var th = document.createElement('th'); // create table headers
+        //     th.innerHTML = arrHead[h];
+        //     tr.appendChild(th);
+        // }
 
         // var dive = document.getElementById('cont');
         // dive.appendChild(dataTable);  // add the TABLE to the container.
@@ -331,11 +362,11 @@ background-color: red;
     function addRow() {
         var empTab = document.getElementById('dataTable');
 
-        var rowCnt = empTab.rows.length;   // table row count.
-        var tr = empTab.insertRow(rowCnt); // the table row.
-        tr = empTab.insertRow(rowCnt);
+          // table row count.
+        var tr = empTab.insertRow(); // the table row.
+    
 
-        for (var c = 0; c < arrHead.length; c++) {
+        for (var c = 0; c < 6; c++) {
             var td = document.createElement('td'); // table definition.
             td = tr.insertCell(c);
 
@@ -376,8 +407,20 @@ background-color: red;
                 var ele = document.createElement('select');
                 
                 ele.setAttribute('type', 'select');
-                ele.innerHTML=' <option value="KG" >Soups</option>';
-                ele.innerHTML=ele.innerHTML+' <option value="Grams" >Salads</option>';
+                ele.innerHTML=' <option value="1" >Chicken</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="2" >Beef</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="3" >Sea Food</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="4" >Salads</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="5" >Friuts</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="6" >Spices</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="7" >Lamb</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="8" >Vegitables</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="9" >Herbs</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="10" >Milk</option>';
+                ele.innerHTML=ele.innerHTML+' <option value="11" >Cheez</option>';
+              
+
+
                
 
                 
@@ -409,23 +452,55 @@ background-color: red;
     }
 
     // function to extract and submit table data.
-    function submit() {
-        var myTab = document.getElementById('dataTable');
-        var arrValues = new Array();
+    function insertRecipeDataToDatabase() {
+        
+        var myTrows=[];
+    var table = document.getElementById("dataTable");
+    
+    
+    //alert(sp);
+    $('#dataTable tr').each(function(row, tr){
 
-        // loop through each row of the table.
-        for (row = 1; row < myTab.rows.length - 1; row++) {
-        	// loop through each cell in a row.
-            for (c = 0; c < myTab.rows[row].cells.length; c++) {  
-                var element = myTab.rows.item(row).cells[c];
-                if (element.childNodes[0].getAttribute('type') == 'text') {
-                    arrValues.push("'" + element.childNodes[0].value + "'");
-                }
-            }
-        }
+    myTrows[row]=[
+        // //col1 =RMID
+        // col2 =itemName
+        // col3 =qty
+        // clo4 =unitPrice
+        // col5 = PUPP (this is hidden)
+        $(tr).find('td:eq(1) input[type="text"]').val(),
+        $(tr).find('td:eq(2)').find(":selected").val(),
+        $(tr).find('td:eq(3) input[type="text"]').val(),
+        $(tr).find('td:eq(4)').find(":selected").val(),
+        $(tr).find('td:eq(5) input[type="text"]').val()
+    
+    ];
+    
+
+});
+myTrows.shift();
+   //alert(myTrows);
+   
         
         // The final output.
-        document.getElementById('output').innerHTML = arrValues;
+        //document.getElementById('output').innerHTML = arrValues;
+        //alert(myTrows[0]);
+        var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        
+     alert( this.responseText);
+      
+      $( "#dataTable" ).removeAttr( "style" ).hide().fadeIn(1000);
+     
+      //calc();
+    }
+  };
+
+  var a=JSON.stringify(myTrows);
+  //alert(a);
+  xhttp.open("GET", "./insertInRawM/"+a, true);
+  xhttp.send();
+ 
         //console.log (arrValues);   // you can see the array values in your browsers console window. Thanks :-) 
     }
 
@@ -433,7 +508,7 @@ background-color: red;
 
 
 
-    function insertRecipeDataToDatabase(){
+    function test(){
 
 var myTrows=[];
 var table = document.getElementById("dataTable");
@@ -454,7 +529,7 @@ myTrows[row]=[
 
 }) ;
 myTrows.shift();
-alert(myTrows[1].lenght);
+alert(myTrows);
 
 
 };
@@ -483,16 +558,7 @@ alert(myTrows[1].lenght);
     <!--end::Global Theme Bundle-->
     
 <script>
-function myFunction() {
-  var table = document.getElementById("myTable");
-  var row = table.insertRow(0);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-  cell1.innerHTML = "<input>";
-  cell2.innerHTML = "";
-  cell3.innerHTML = "<input>";
-}
+
 </script>
 </body>
 

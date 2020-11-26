@@ -301,7 +301,7 @@ font-style:italic;
                 <a href="/arm" class="btn btn-primary">
                     Add Raw Material
                 </a>
-                <a href="/cp" class="btn btn-danger">
+                <a href="/cr" class="btn btn-danger">
                     Create Recipes
                 </a>
                 <a href="/es" class="btn btn-warning">
