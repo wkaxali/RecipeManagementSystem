@@ -1,0 +1,1 @@
+scp -r -i bermij.pem ../RecipeManagementSystem/*  centos@18.210.113.69:/Projects/tmp
